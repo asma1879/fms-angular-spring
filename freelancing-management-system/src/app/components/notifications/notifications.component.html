@@ -1,0 +1,7 @@
+<div class="card shadow-sm"> 
+    <div class="card-header bg-success text-white"> 🔔 Notifications </div> 
+    <ul class="list-group list-group-flush"> 
+        <li *ngFor="let note of notifications" class="list-group-item"> 
+            <strong>{{ note.message }}</strong> 
+            <br /> 
+    <small class="text-muted">{{ note.time }}</small> </li> </ul> </div>

@@ -1,0 +1,47 @@
+.navbar-brand {
+    font-size: 1.3rem;
+    }
+    .nav-link {
+    font-weight: 500;
+    }
+    .nav-link:hover {
+    text-decoration: underline;
+    }
+    .dropdown-menu {
+    min-width: 160px;
+    }
+    .btn-outline-secondary {
+    border-radius: 50%;
+    padding: 0.3rem 0.5rem;
+    }
+    .notification-bell {
+        position: relative;
+        }
+        
+        .notification-badge {
+        position: absolute;
+        top: 0;
+        left: 12px; /* tweak this value as needed */
+        transform: translate(-50%, -50%);
+        background-color: red;
+        color: white;
+        padding: 0 6px;
+        font-size: 0.75rem;
+        border-radius: 50%;
+        }
+        .dropdown-menu {
+            font-size: 0.85rem;
+          }
+          
+          .dropdown-item:hover {
+            background-color: #f8f9fa;
+          }
+
+          .sticky-top{
+
+            position: sticky;
+            top: 0;
+            z-index: 1020;
+
+          }
+          

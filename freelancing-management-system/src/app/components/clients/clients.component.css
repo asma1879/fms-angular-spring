@@ -1,0 +1,72 @@
+.container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  input {
+    margin: 5px;
+    padding: 5px;
+  }
+  
+  button {
+    margin-left: 5px;
+    padding: 5px 10px;
+  }
+
+  .nav-link.active {
+    background-color: #e2e6ea;
+    font-weight: bold;
+    border-radius: 4px;
+  }
+  
+  /* Ensure full-width responsiveness */
+.container {
+    max-width: 960px;
+    margin: auto;
+  }
+  
+  /* Headings */
+  h2 {
+    font-weight: 600;
+  }
+  
+  /* Form */
+  .form-label {
+    font-weight: 500;
+  }
+  
+  textarea.form-control {
+    resize: vertical;
+  }
+  
+  /* Buttons */
+  button[type="submit"] {
+    font-weight: 500;
+  }
+  
+  /* Cards */
+  .card {
+    border-radius: 0.75rem;
+  }
+  
+  .card-header {
+    font-size: 1rem;
+  }
+  
+  /* Sub component sections */
+  .card-body app-client-profile,
+  .card-body app-client-job-bids,
+  .card-body app-wishlist,
+  .card-body app-notification {
+    display: block;
+    margin-top: 0.5rem;
+  }
+  
+  /* Mobile responsive tweaks */
+  @media (max-width: 576px) {
+    .btn {
+      width: 100%;
+    }
+  }
+  
+  

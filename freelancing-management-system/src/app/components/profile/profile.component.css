@@ -1,0 +1,13 @@
+.profile-card {
+    max-width: 400px;
+    margin: auto;
+    border-radius: 1rem;
+    }
+    
+    img {
+    object-fit: cover;
+    }
+    
+    .btn {
+    width: 100%;
+    }

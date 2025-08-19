@@ -1,0 +1,7 @@
+<h2>{{ freelancer.name }}</h2>
+<p><strong>Rating:</strong> {{ freelancer.rating }}</p>
+<h4>Skills:</h4>
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let skill of freelancer.skills">{{ skill }}</li>
+</ul>
+

@@ -1,0 +1,98 @@
+<!-- 
+<div class="container"> <div class="card mb-4"> 
+  <div class="card-header bg-success text-white">Submit a Bid</div> <div class="card-body"> 
+    <form (ngSubmit)="submitBid()"> <div class="mb-3"> <label>Job ID</label> 
+      <input type="text" class="form-control" [(ngModel)]="newBid.projectId" name="projectId" required> </div> 
+      <div class="mb-3"> <label>Freelancer Id</label>
+       <input type="text" class="form-control" [(ngModel)]="newBid.freelancerId" name="freelancerId" required> 
+      </div> <div class="mb-3"> <label>Amount</label> 
+        <input type="number" class="form-control" [(ngModel)]="newBid.amount" name="amount" required> </div>
+         <div class="mb-3"> <label>Message</label>
+           <textarea class="form-control" [(ngModel)]="newBid.message" name="message" rows="3" required>
+
+           </textarea> </div> <button class="btn btn-success" type="submit">Submit Bid</button> </form> 
+          </div> </div> <div class="card"> <div class="card-header bg-light">Submitted Bids</div>
+           <ul class="list-group list-group-flush"> <li *ngFor="let bid of bids" class="list-group-item"> 
+            <strong>{{ bid.freelancer }}</strong> offered <strong>${{ bid.amount }}</strong> for Job #{{ bid.jobId }}<br> 
+  <small class="text-muted">{{ bid.message }}</small> </li> </ul> </div> </div> -->
+
+  <div class="container mt-5">
+  <h2 class="mb-4">Submit a Bid</h2>
+  <form (ngSubmit)="submitBid()" class="row g-3">
+
+    <div class="col-md-4">
+      <label for="projectId" class="form-label">Job ID</label>
+      <input type="number" [(ngModel)]="newBid.projectId" name="projectId" class="form-control" id="projectId" required>
+    </div>
+
+    <!-- <div class="col-md-4">
+      <label for="freelancerId" class="form-label">Freelancer ID</label>
+      <input type="number" [(ngModel)]="newBid.freelancerId" name="freelancerId" class="form-control" id="freelancerId" required>
+    </div> -->
+
+    <div class="col-md-4">
+      <label for="amount" class="form-label">Bid Amount</label>
+      <input type="number" [(ngModel)]="newBid.amount" name="amount" class="form-control" id="amount" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="message" class="form-label">Message</label>
+      <input type="text" [(ngModel)]="newBid.message" name="message" class="form-control" id="message" required>
+    </div>
+
+    <div class="col-md-6">
+      <label for="date" class="form-label">Date</label>
+      <input type="date" [(ngModel)]="newBid.date" name="date" class="form-control" id="date" required>
+    </div>
+
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary">Submit Bid</button>
+    </div>
+  </form>
+
+  <hr class="my-5">
+
+  <h2 class="mb-4">All Bids</h2>
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover align-middle">
+      <thead class="table-light">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Job ID</th>
+           <th scope="col">Client ID</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Message</th>
+          <th scope="col">Date</th>
+          <th scope="col">Status</th>
+          <!-- <th scope="col">Actions</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bid of bids; let i = index">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ bid.projectId }}</td>
+          <td>{{ bid.freelancerId }}</td>
+          <td>{{ bid.amount }}</td>
+          <td>{{ bid.message }}</td>
+          <td>{{ bid.date }}</td>
+          <td>
+            <span class="badge"
+              [ngClass]="{
+                'bg-secondary': bid.status === 'pending',
+                'bg-success': bid.status === 'accepted',
+                'bg-danger': bid.status === 'rejected'
+              }">
+              {{ bid.status }}
+            </span>
+          </td>
+          <!-- <td>
+            <button class="btn btn-sm btn-success me-1" (click)="updateStatus(bid.id!, 'accepted')">Accept</button>
+            <button class="btn btn-sm btn-danger me-1" (click)="updateStatus(bid.id!, 'rejected')">Reject</button>
+            <button class="btn btn-sm btn-outline-secondary" (click)="deleteBid(bid.id!)">Delete</button>
+          </td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

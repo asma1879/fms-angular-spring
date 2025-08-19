@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col-md-6 mb-4" *ngFor="let project of projects">
+    <div class="card shadow-sm border-0 h-100">
+      <div class="card-body">
+        <!-- View Mode -->
+        <ng-container *ngIf="!editingProject || editingProject.id !== project.id; else editForm">
+          <h5 class="card-title text-primary">{{ project.title }}</h5>
+          <p class="card-text">{{ project.description }}</p>
+          <p><strong>Budget:</strong> ${{ project.budget }}</p>
+          <p><strong>Skills:</strong>
+            <span class="badge bg-secondary me-1" *ngFor="let skill of project.skills">{{ skill }}</span>
+          </p>
+          <button class="btn btn-sm btn-outline-primary me-2" (click)="startEdit(project)">Edit</button>
+          <button class="btn btn-sm btn-outline-danger" (click)="deleteProject(project.id)">Delete</button>
+        </ng-container>
+
+        <!-- Edit Mode -->
+        <ng-template #editForm>
+          <div *ngIf="editingProject">
+            <input class="form-control mb-2" [(ngModel)]="editingProject.title" placeholder="Title">
+            <textarea class="form-control mb-2" [(ngModel)]="editingProject.description" placeholder="Description"></textarea>
+            <input class="form-control mb-2" type="number" [(ngModel)]="editingProject.budget" placeholder="Budget">
+            <input class="form-control mb-2"
+                   [(ngModel)]="skillsInput"
+                   placeholder="Skills (comma-separated)"
+                   (blur)="parseSkills()">
+            <button class="btn btn-sm btn-success me-2" (click)="saveEdit()">Save</button>
+            <button class="btn btn-sm btn-secondary" (click)="cancelEdit()">Cancel</button>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

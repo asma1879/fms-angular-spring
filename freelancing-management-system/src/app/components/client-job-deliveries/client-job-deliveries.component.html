@@ -1,0 +1,59 @@
+
+<div class="container mt-4">
+  <h4>My Job Deliveries</h4>
+
+  <div *ngIf="deliveries.length === 0" class="alert alert-info">
+    No deliveries yet.
+  </div>
+
+  <table *ngIf="deliveries.length > 0" class="table table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th>Job ID</th>
+        <th>Freelancer ID</th>
+        <!-- <th>Delivery Date</th> -->
+        <th>Submission</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let d of deliveries">
+        <td>{{ d.jobId }}</td>
+        <td>{{ d.freelancerId }}</td>
+        <!-- <td>{{ d.deliveryDate | date:'mediumDate' }}</td> -->
+        <td><a [href]="d.submissionLink" target="_blank" rel="noopener noreferrer">View</a></td>
+         <!-- <td>
+  <div><strong>📨 Message:</strong><br>{{ d.message }}</div>
+
+  <div *ngIf="d.fileName" class="mt-1">
+    <strong>📎 File:</strong>
+    <a [href]="getFileUrl(d.fileName)" target="_blank">Download</a>
+  </div>
+</td> -->
+
+
+
+        <td>
+          <span class="badge"
+                [ngClass]="{
+                  'bg-warning': d.status.toLowerCase() === 'submitted',
+                  'bg-success': d.status.toLowerCase() === 'approved',
+                  'bg-info': d.status.toLowerCase() === 'reviewed'
+                }">
+            {{ d.status }}
+          </span>
+        </td>
+        <td>
+          <button class="btn btn-success btn-sm"
+                  [disabled]="d.status.toLowerCase() === 'approved'"
+                  (click)="acceptDelivery(d)"
+                  [attr.aria-label]="'Accept and pay delivery ' + d.id"
+ >
+            Accept &amp; Pay
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

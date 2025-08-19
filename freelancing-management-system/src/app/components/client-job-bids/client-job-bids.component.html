@@ -1,0 +1,169 @@
+<!-- <!-- 
+<div class="container mt-4">
+  <h3 class="mb-3">Search Job to View Bids</h3>
+
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="searchTerm"
+        placeholder="Search job by title"
+      />
+    </div>
+    <div class="col-md-6">
+      <select class="form-select" [(ngModel)]="selectedJobId" (change)="onJobChange()">
+        <option [ngValue]="null">-- Select a Job --</option>
+        <option *ngFor="let job of filteredJobs" [ngValue]="job.id">
+          {{ job.title }}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div *ngIf="bids.length > 0">
+    <h5 class="mt-4">Bids for Selected Job</h5>
+    <table class="table table-bordered table-hover">
+      <thead class="table-light">
+        <tr>
+          <th>Freelancer</th>
+          <th>Amount</th>
+          <th>Message</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bid of bids">
+          !-- <td>{{ bid.freelancerId }}</td> --
+         <td>
+  <a [routerLink]="['/freelancer-profile', bid.freelancerId]" class="text-decoration-none">
+    {{ bid.freelancerName || 'N/A' }}
+  </a>
+</td>
+          <td>${{ bid.amount }}</td>
+          <td>{{ bid.message }}</td>
+          <td>
+            <span [ngClass]="{
+              'text-success': bid.status === 'accepted',
+              'text-danger': bid.status === 'rejected',
+              'text-secondary': bid.status === 'pending'
+            }">{{ bid.status || 'pending' }}</span>
+          </td>
+          <td>
+            !-- <app-payment-method (paymentDataChange)="onPaymentDataChange($event)"></app-payment-method> --
+            <button class="btn btn-sm btn-success me-1" (click)="acceptBid(bid.id)" [disabled]="bid.status === 'accepted'">Accept</button>
+           <button class="btn btn-sm btn-danger" (click)="rejectBid(bid.id)" [disabled]="bid.status === 'rejected'">Reject</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="bids.length === 0 && selectedJobId" class="alert alert-warning mt-3">
+    No bids found for this job.
+  </div>
+</div>
+ -->
+
+ <!-- / -->
+
+ <div class="main-content tight-layou">
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h3 class="fw-bold">
+      <i class="bi bi-briefcase me-2 text-success"></i>Job Bids Overview
+    </h3>
+  </div>
+
+  <!-- Search & Job Selection -->
+  <div class="card shadow-sm border-0 mb-4">
+    <div class="card-body">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Search Job</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="searchTerm"
+            placeholder="Search by job title..."
+          />
+        </div>
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Select Job</label>
+          <select class="form-select" [(ngModel)]="selectedJobId" (change)="onJobChange()">
+            <option [ngValue]="null">-- Choose a job --</option>
+            <option *ngFor="let job of filteredJobs" [ngValue]="job.id">
+              {{ job.title }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bid Cards -->
+  <div *ngIf="bids.length > 0">
+    <h5 class="fw-semibold text-muted mb-3">Bids for: <span class="text-dark">{{ getSelectedJobTitle() }}</span></h5>
+
+    <div class="row g-4">
+      <div *ngFor="let bid of bids" class="col-12">
+        <div class="card border-0 shadow-sm rounded-3">
+          <div class="card-body d-flex flex-column flex-md-row justify-content-between align-items-start">
+            <!-- Freelancer Info -->
+            <div class="me-md-4 flex-grow-1">
+              <h5 class="card-title mb-1">
+                <a [routerLink]="['/freelancer-profile', bid.freelancerId]" class="text-decoration-none text-dark fw-bold">
+                  <i class="bi bi-person-circle me-1"></i>{{ bid.freelancerName || 'Loading...' }}
+                </a>
+              </h5>
+              <p class="text-muted mb-2">Country: {{ bid.freelancerCountry  }}</p>
+              <p class="text-muted mb-2">Experience: {{ bid.freelancerExperience || 0 }} years</p>
+
+              <div class="mb-2">
+                <strong>Skills:</strong>
+                <div class="d-flex flex-wrap gap-1 mt-1">
+                  <span *ngFor="let skill of bid.freelancerSkills?.split(',')" class="badge bg-light border text-dark">
+                    {{ skill.trim() }}
+                  </span>
+                </div>
+              </div>
+
+              <p class="mb-1"><strong>Bid Amount:</strong> ${{ bid.amount }}</p>
+              <p>
+                <strong>Status:</strong>
+                <span [ngClass]="{
+                  'text-success': bid.status === 'accepted',
+                  'text-danger': bid.status === 'rejected',
+                  'text-secondary': bid.status === 'pending'
+                }">
+                  {{ bid.status || 'pending' }}
+                </span>
+              </p>
+            </div>
+
+            <!-- Actions -->
+            <div class="text-md-end w-100 mt-3 mt-md-0" style="max-width: 220px;">
+              <button class="btn btn-outline-info btn-sm w-100 mb-2" (click)="viewMessage(bid)">
+                <i class="bi bi-chat-dots"></i> View Message
+              </button>
+              <div class="d-flex justify-content-between">
+                <button class="btn btn-success btn-sm w-50 me-1" (click)="acceptBid(bid.id)" [disabled]="bid.status === 'accepted'">
+                  <i class="bi bi-check-circle"></i> Accept
+                </button>
+                <button class="btn btn-danger btn-sm w-50" (click)="rejectBid(bid.id)" [disabled]="bid.status === 'rejected'">
+                  <i class="bi bi-x-circle"></i> Reject
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- No Bids Message -->
+  <div *ngIf="bids.length === 0 && selectedJobId" class="alert alert-warning mt-4">
+    <i class="bi bi-exclamation-circle-fill me-2"></i> No bids found for this job.
+  </div>
+</div>

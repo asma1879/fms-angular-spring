@@ -1,0 +1,30 @@
+<div class="container mt-4">
+  <h4>My Payment Reports</h4>
+  <div *ngIf="reports.length === 0" class="alert alert-info">
+    No payment reports found.
+  </div>
+
+  <table *ngIf="reports.length > 0" class="table table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th>Job ID</th>
+        <th>Freelancer Id</th>
+        <th>Amount</th>
+        <th>Commission</th>
+        <th>Status</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let r of reports">
+        <td>{{ r.jobId }}</td>
+        <td>{{ r.freelancerId }}</td>
+        <td>{{ r.amount }}</td>
+        <td>{{ r.commissionAmount }}</td>
+        <td>{{ r.status }}</td>
+        <td>{{ r.date | date:'short' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+

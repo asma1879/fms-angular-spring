@@ -1,0 +1,145 @@
+<!-- <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h3 class="mb-4 text-center">Register</h3>
+          <form #registerForm="ngForm" (ngSubmit)="onRegister()">
+            <div class="mb-3">
+              <label>Name</label>
+              <input name="name" class="form-control" required [(ngModel)]="registerData.name" #name="ngModel" />
+              <div class="text-danger" *ngIf="name.invalid && name.touched">Name is required.</div>
+            </div>
+  
+            <div class="mb-3">
+              <label>Email</label>
+              <input type="email" name="email" class="form-control" required [(ngModel)]="registerData.email" #email="ngModel" />
+              <div class="text-danger" *ngIf="email.invalid && email.touched">Valid email is required.</div>
+            </div>
+  
+            <div class="mb-3">
+              <label>Password</label>
+              <input type="password" name="password" class="form-control" required [(ngModel)]="registerData.password" #password="ngModel" />
+              <div class="text-danger" *ngIf="password.invalid && password.touched">Password is required.</div>
+            </div>
+  
+            <button class="btn btn-success w-100" [disabled]="registerForm.invalid">Register</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+   -->
+  <!-- <form #registerForm="ngForm" (ngSubmit)="onRegister()">
+  <div class="mb-3">
+    <label>Name</label>
+    <input name="name" class="form-control" required [(ngModel)]="registerData.name" #name="ngModel" />
+  </div>
+
+  <div class="mb-3">
+    <label>Email</label>
+    <input type="email" name="email" class="form-control" required [(ngModel)]="registerData.email" #email="ngModel" />
+  </div>
+
+  <div class="mb-3">
+    <label>Password</label>
+    <input type="password" name="password" class="form-control" required [(ngModel)]="registerData.password" #password="ngModel" />
+  </div>
+
+  <div class="mb-3">
+    <label>Role</label>
+    <select name="role" class="form-control" [(ngModel)]="registerData.role" required>
+      <option value="freelancer">Freelancer</option>
+      <option value="client">Client</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label>Bio</label>
+    <textarea name="bio" class="form-control" [(ngModel)]="registerData.bio"></textarea>
+  </div>
+
+  <div class="mb-3">
+    <label>Skills</label>
+    <input name="skills" class="form-control" [(ngModel)]="registerData.skills" />
+  </div>
+
+  <div class="mb-3">
+    <label>Experience</label>
+    <input name="experience" class="form-control" [(ngModel)]="registerData.experience" />
+  </div>
+
+  <div class="mb-3">
+    <label>Avatar URL (optional)</label>
+    <input name="avatar" class="form-control" [(ngModel)]="registerData.avatar" />
+  </div>
+
+  <button class="btn btn-success w-100" [disabled]="registerForm.invalid">Register</button>
+</form> -->
+<br><br><br><br><br>
+<div class="d-flex justify-content-center align-items-center vh-100 bg-light">
+  <div class="card shadow p-4" style="min-width: 400px; max-width: 500px; width: 100%;">
+    <h3 class="text-center mb-4">Create Your Account</h3>
+
+    <form #registerForm="ngForm" (ngSubmit)="onRegister()">
+      <div class="mb-3">
+        <label>Name</label>
+        <input name="name" class="form-control" required [(ngModel)]="registerData.name" #name="ngModel" />
+      </div>
+
+      <div class="mb-3">
+        <label>Email</label>
+        <input type="email" name="email" class="form-control" required [(ngModel)]="registerData.email" #email="ngModel" />
+      </div>
+
+      <div class="mb-3">
+        <label>Password</label>
+        <input type="password" name="password" class="form-control" required [(ngModel)]="registerData.password" #password="ngModel" />
+      </div>
+
+      <div class="mb-3">
+        <label>Role</label>
+        <select name="role" class="form-control" [(ngModel)]="registerData.role" required>
+          <option value="freelancer">Freelancer</option>
+          <option value="client">Client</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label>Bio</label>
+        <textarea name="bio" class="form-control" [(ngModel)]="registerData.bio"></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label>Skills</label>
+        <input name="skills" class="form-control" [(ngModel)]="registerData.skills" />
+      </div>
+
+      <div class="mb-3">
+  <label>Country</label>
+  <select name="country" class="form-control" [(ngModel)]="registerData.country" required>
+    <option value="" disabled selected>Select your country</option>
+    <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
+  </select>
+</div>
+
+
+      <div class="mb-3">
+        <label>Experience</label>
+        <input name="experience" class="form-control" [(ngModel)]="registerData.experience" />
+      </div>
+
+      <div class="mb-3">
+        <label>Avatar URL (optional)</label>
+        <input name="avatar" class="form-control" [(ngModel)]="registerData.avatar" />
+      </div>
+
+      <button class="btn btn-success w-100" [disabled]="registerForm.invalid">Register</button>
+    </form>
+
+    <div class="text-center mt-3">
+      Already have an account? <a routerLink="/login">Login</a>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,194 @@
+<div class="container mt-4"> <div class="card shadow"> <div class="card-header bg-primary text-white"> <h4 class="mb-0">Post a New Job</h4> </div> <div class="card-body"> <form (ngSubmit)="onSubmit()" #jobForm="ngForm"> <div class="mb-3"> <label for="title" class="form-label">Job Title</label> <input type="text" id="title" name="title" class="form-control" [(ngModel)]="jobData.title" required /> </div>
+    
+        <div class="mb-2">
+          <label for="description" class="form-label">Job Description</label>
+          <textarea
+            id="description"
+            name="description"
+            class="form-control"
+            [(ngModel)]="jobData.description"
+            required
+            rows="4"
+          ></textarea>
+        </div>
+
+        <!-- <div class="mb-2">
+      <select for="category" class="form-select" id="category" name="category" class="form-control" [(ngModel)]="jobData.category" >
+        <option value="">All Categories</option>
+        <option value="OPEN">Web Development</option>
+        <option value="CLOSED">Design</option>
+      </select>
+    </div> -->
+         <div class="mb-2">
+          <label for="category" class="form-level">Job Category</label>
+          <select  id="category"
+            name="category"
+            class="form-control"
+            [(ngModel)]="jobData.category"
+            required><option>
+            Web Development
+            </option>
+            <option>
+            Design
+            </option>
+             <option>
+            Marketing
+            </option>
+
+            <option>
+            Mobile Development
+            </option>
+            <option>
+            Backend Development
+            </option>
+             <option>
+            AI/ML
+            </option>
+            <option>
+              Graphic Design
+            </option>
+            <option>
+            UI/UX Design
+            </option>
+            <option>
+              Data Science
+            </option>
+            <option>
+              Digital Marketing
+            </option>
+          </select>
+        </div>
+     
+        <!-- <div class="mb-2">
+          <label for="budget" class="form-label">Budget ($)</label>
+          <input
+            type="number"
+            id="budget"
+            name="budget"
+            class="form-control"
+            [(ngModel)]="jobData.budget"
+            required
+          />
+        </div>
+     -->
+
+     <!-- Budget Type Selection -->
+<!-- Budget Type Selection -->
+<div class="mb-3">
+  <label class="form-label d-block">Budget Type</label>
+  <div class="form-check form-check-inline">
+    <input
+      class="form-check-input"
+      type="radio"
+      name="budgetType"
+      id="fixed"
+      value="Fixed"
+      [(ngModel)]="jobData.budgetType"
+      required
+    />
+    <label class="form-check-label" for="fixed">Fixed</label>
+  </div>
+  <div class="form-check form-check-inline">
+    <input
+      class="form-check-input"
+      type="radio"
+      name="budgetType"
+      id="hourly"
+      value="Hourly"
+      [(ngModel)]="jobData.budgetType"
+    />
+    <label class="form-check-label" for="hourly">Hourly</label>
+  </div>
+</div>
+
+<!-- Fixed Budget Input -->
+<div class="mb-3" *ngIf="jobData.budgetType === 'Fixed'">
+  <label for="budget" class="form-label">Fixed Budget ($)</label>
+  <input
+    type="number"
+    id="budget"
+    name="budget"
+    class="form-control"
+    [(ngModel)]="jobData.budget"
+    required
+  />
+</div>
+
+<!-- Hourly Budget + Fixed Budget Together -->
+<div class="mb-3" *ngIf="jobData.budgetType === 'Hourly'">
+  <label for="hourlyRate" class="form-label">Hourly Rate ($/hr)</label>
+  <input
+    type="number"
+    id="hourlyRate"
+    name="hourlyRate"
+    class="form-control"
+    [(ngModel)]="jobData.hourlyRate"
+    required
+  />
+  
+  <!-- Optional fixed budget even for hourly jobs -->
+  <label for="budgetHourlyFixed" class="form-label mt-2">Expected Fixed Budget ($)</label>
+  <input
+    type="number"
+    id="budgetHourlyFixed"
+    name="budgetHourlyFixed"
+    class="form-control"
+    [(ngModel)]="jobData.budget"
+  />
+</div>
+
+  <!-- <div class="mb-3">
+  <label for="duration" class="form-label">Estimated Duration (days)</label>
+  <input
+    type="number"
+    id="duration"
+    name="duration"
+    class="form-control"
+    [(ngModel)]="jobData.duration"
+    required
+  />
+</div> -->
+
+        <div class="mb-2">
+          <label for="deadline" class="form-label">Deadline</label>
+          <input
+            type="date"
+            id="deadline"
+            name="deadline"
+            class="form-control"
+            [(ngModel)]="jobData.deadline"
+            required
+          />
+        </div>
+
+      
+    
+        <div class="mb-2">
+          <label for="skills" class="form-label">Skills Required (comma-separated)</label>
+          <input
+            type="text"
+            id="skills"
+            name="skills"
+            class="form-control"
+            [(ngModel)]="skills"
+            required
+          />
+        </div>
+
+       
+        
+          <!-- <div class="mb-2">
+          <label for="status" class="form-level">Status</label>
+      <select  id="status" name="status" class="form-control" [(ngModel)]="jobData.status">
+        !-- <option value="">All Statuses</option> --
+        <option value="OPEN">Open</option>
+        <option value="CLOSED">Closed</option>
+      </select>
+    </div> -->
+     
+        <button type="submit" class="btn btn-success w-100" [disabled]="jobForm.invalid">
+          Post Job
+        </button>
+      </form>
+    </div>
+    </div> </div>

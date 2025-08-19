@@ -1,0 +1,86 @@
+<!-- Feature Section -->
+<div class="container my-5">
+  <div class="text-center mb-5">
+    <h2 class="fw-bold">What You Can Do</h2>
+    <p class="text-muted">Explore key features of our platform</p>
+  </div>
+
+  <div class="row g-4">
+
+    <!-- CLIENT: Post Job -->
+    <div class="col-md-4" *ngIf="role === 'client'">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body text-center">
+          <i class="bi bi-briefcase-fill fs-1 text-success"></i>
+          <h5 class="card-title mt-3">Post a Job</h5>
+          <p class="card-text">Easily create job postings and attract skilled freelancers.</p>
+          <a routerLink="/post-job" class="btn btn-outline-success btn-sm">Post Job</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FREELANCER: Browse Jobs -->
+    <div class="col-md-4" *ngIf="role === 'freelancer'">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body text-center">
+          <i class="bi bi-search fs-1 text-primary"></i>
+          <h5 class="card-title mt-3">Browse Jobs</h5>
+          <p class="card-text">Explore available jobs and submit proposals that fit your skills.</p>
+          <a routerLink="/jobs" class="btn btn-outline-primary btn-sm">Browse Jobs</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FREELANCER & CLIENT: Manage Contracts -->
+    <div class="col-md-4" *ngIf="role === 'freelancer' || role === 'client'">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body text-center">
+          <i class="bi bi-file-earmark-text fs-1 text-warning"></i>
+          <h5 class="card-title mt-3">Manage Contracts</h5>
+          <p class="card-text">Track milestones, payments, and deliverables efficiently.</p>
+          <a routerLink="/contracts" class="btn btn-outline-warning btn-sm">View Contracts</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- GUEST: General Features -->
+    <ng-container *ngIf="!role">
+      <!-- Find Jobs -->
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body text-center">
+            <i class="bi bi-search fs-1 text-primary"></i>
+            <h5 class="card-title mt-3">Find Jobs</h5>
+            <p class="card-text">Browse open jobs and opportunities as a freelancer.</p>
+            <a routerLink="/jobs" class="btn btn-outline-primary btn-sm">Explore Jobs</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Join as Freelancer -->
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body text-center">
+            <i class="bi bi-person-plus fs-1 text-success"></i>
+            <h5 class="card-title mt-3">Join as Freelancer</h5>
+            <p class="card-text">Create your profile and start applying to job opportunities.</p>
+            <a routerLink="/register" class="btn btn-outline-success btn-sm">Get Started</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- For Clients -->
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body text-center">
+            <i class="bi bi-people fs-1 text-info"></i>
+            <h5 class="card-title mt-3">Hire Freelancers</h5>
+            <p class="card-text">Post your job and get work done by trusted professionals.</p>
+            <a routerLink="/clients" class="btn btn-outline-info btn-sm">Post a Job</a>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+  </div>
+</div>

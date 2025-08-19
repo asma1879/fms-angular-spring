@@ -1,0 +1,33 @@
+.home-carousel {
+  position: relative;
+  height: 80vh;
+  overflow: hidden;
+}
+
+.banner-img {
+  object-fit: cover;
+  height: 80vh;
+}
+
+.carousel-caption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.35);
+  text-align: center;
+}
+
+.text-shadow {
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+}
+.card:hover {
+  transform: translateY(-5px);
+  transition: 0.3s ease;
+}
+
+.card-title {
+  font-weight: bold;
+}
+

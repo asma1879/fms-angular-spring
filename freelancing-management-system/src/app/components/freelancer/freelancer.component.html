@@ -1,0 +1,32 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Browse Freelancers</h2>
+
+  <div class="row">
+    <div *ngFor="let freelancer of freelancers" class="col-md-4 mb-4">
+      <div class="card shadow-sm h-100">
+        <img
+          *ngIf="freelancer.avatar"
+          [src]="'http://localhost:3001' + freelancer.avatar"
+          class="card-img-top"
+          alt="Freelancer Avatar"
+          style="height: 250px; object-fit: cover;"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ freelancer.fullName }}</h5>
+          <p class="card-text"><strong>Bio:</strong> {{ freelancer.bio }}</p>
+          <p><strong>Skills:</strong> {{ freelancer.skills }}</p>
+          <p><strong>Experience:</strong> {{ freelancer.experience }}</p>
+          <p><strong>Country:</strong> {{ freelancer.country }}</p>
+        </div>
+        <div class="card-footer bg-white border-top-0">
+          <button class="btn btn-outline-primary btn-sm w-100" (click)="leaveReview(freelancer)">
+            Leave Review
+          </button>
+            <button class="btn btn-outline-primary btn-sm w-100" (click)="leaveReview(freelancer)">
+            Hire
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,124 @@
+<div class="container my-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="text-primary fw-bold mb-1">📋 My Posted Jobs</h2>
+      <p class="text-muted mb-0">Manage, edit, and track all the jobs you've posted.</p>
+    </div>
+    <!-- Optional New Job Button -->
+    <!-- 
+    <button class="btn btn-success shadow-sm" (click)="postNewJob()">
+      <i class="bi bi-plus-circle me-1"></i> Post New Job
+    </button> 
+    -->
+  </div>
+
+  <!-- Filters -->
+  <div class="row g-3 mb-4">
+    <div class="col-md-4">
+      <input
+        type="text"
+        class="form-control shadow-sm"
+        placeholder="🔍 Search by title or keyword"
+        [(ngModel)]="keyword"
+        (input)="onFilterChange()" />
+    </div>
+    <div class="col-md-3">
+      <select
+        class="form-select shadow-sm"
+        [(ngModel)]="selectedCategory"
+        (change)="onFilterChange()">
+        <option value="">📂 All Categories</option>
+        <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <select
+        class="form-select shadow-sm"
+        [(ngModel)]="selectedStatus"
+        (change)="onFilterChange()">
+        <option value="">All Statuses</option>
+        <option value="OPEN">Open</option>
+        <option value="CLOSED">Closed</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Job Cards -->
+  <div class="row row-cols-1 g-4">
+    <div class="col" *ngFor="let job of jobs">
+      <div class="card p-4 custom-shadow border-0">
+        <div class="card-header bg-light d-flex justify-content-between align-items-center">
+          <!-- <h5 class="fw-bold text-dark mb-0" style="line-height: 1.6;">
+            {{ job.title }}
+            <span class="badge bg-info text-dark ms-2">{{ job.budgetType }}</span>
+          </h5> -->
+          <h5 class="fw-bold text-dark mb-0" style="line-height: 1.6;">
+  {{ job.title }}
+  <span *ngIf="job.budgetType" class="badge bg-info text-dark ms-2">{{ job.budgetType }}</span>
+</h5>
+
+          <span
+            [ngClass]="{
+              'badge bg-warning': job.status === 'OPEN',
+              'badge bg-danger': job.status === 'CLOSED'
+            }">
+            {{ job.status }}
+          </span>
+        </div>
+        <div class="card-body">
+          <!-- Job Info -->
+          <p class="card-text text-muted mb-1">
+            <i class="bi bi-tag-fill me-1 text-info"></i>{{ job.category }}
+          </p>
+          <p class="card-text">{{ job.description }}</p>
+          <p><strong>Budget:</strong> ${{ job.budget }} <span class="text-muted">({{ job.budgetType || 'Fixed' }})</span></p>
+          <!-- <p><i class="bi bi-clock-history text-secondary me-1"></i><strong>Duration:</strong> {{ job.duration }} days</p> -->
+          <p><strong>Deadline:</strong> {{ job.deadline }}</p>
+          <p>
+            <strong>Skills:</strong>
+            <span class="badge bg-secondary me-1" *ngFor="let skill of job.skillsRequired">{{ skill }}</span>
+          </p>
+
+          <!-- Client Actions -->
+          <div class="mt-3 d-flex flex-wrap gap-2">
+            <button class="btn btn-outline-primary btn-sm" (click)="viewBids(job.id!)">
+              {{ selectedJobId === job.id ? 'Hide Bids' : 'View Bids' }}
+            </button>
+            <button class="btn btn-outline-danger btn-sm" (click)="deleteJob(job.id!)">Delete</button>
+            <button *ngIf="job.status === 'OPEN'" class="btn btn-warning btn-sm" (click)="closeJob(job.id!)">
+              Close Job
+            </button>
+          </div>
+
+          <!-- Inline Bid Display -->
+          <div *ngIf="selectedJobId === job.id" class="mt-3 border-top pt-3">
+            <h6>Bids for this job:</h6>
+            <ul *ngIf="bids.length > 0; else noBids" class="list-group">
+              <li *ngFor="let bid of bids" class="list-group-item">
+                <div><strong>Bid Amount:</strong> ${{ bid.amount }}</div>
+                <div><strong>Message:</strong> {{ bid.message || '(No message)' }}</div>
+                <div><strong>Date:</strong> {{ bid.date | date: 'medium' }}</div>
+                <div>
+                  <strong>Status:</strong>
+                  <span
+                    [ngClass]="{
+                      'badge bg-warning text-dark': bid.status === 'pending',
+                      'badge bg-success': bid.status === 'accepted',
+                      'badge bg-danger': bid.status === 'rejected',
+                      'badge bg-info': bid.status === 'open',
+                      'badge bg-secondary': bid.status === 'closed'
+                    }">
+                    {{ bid.status || 'pending' }}
+                  </span>
+                </div>
+              </li>
+            </ul>
+            <ng-template #noBids>
+              <p class="text-muted">No bids found for this job.</p>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

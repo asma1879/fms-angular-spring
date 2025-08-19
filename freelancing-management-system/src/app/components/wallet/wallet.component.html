@@ -1,0 +1,115 @@
+<div class="card shadow-sm mb-4">
+  <div class="card-header bg-primary text-white">
+    <h5 class="mb-0">
+      <i class="bi bi-wallet2 me-2"></i>My Wallet
+    </h5>
+  </div>
+
+  <div class="card-body">
+
+    <!-- Balance Display -->
+    <h4 class="text-success mb-3">
+      Balance: {{ wallet?.balance | currency:'USD' }}
+    </h4>
+
+    <hr />
+
+    <!-- Transactions Table -->
+    <h6 class="mb-3">Recent Transactions</h6>
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover align-middle">
+        <thead class="table-light">
+          <tr>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th class="text-end">Amount</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="transactions.length > 0; else noTransactions">
+          <tr *ngFor="let txn of transactions">
+            <td>{{ txn.date | date:'mediumDate' }}</td>
+            <td>{{ txn.type }}</td>
+            <td>{{ txn.description }}</td>
+            <td class="text-end"
+                [ngClass]="{
+                  'text-success': txn.type === 'credit',
+                  'text-danger': txn.type === 'debit'
+                }">
+              {{ txn.amount | currency:'USD' }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ng-template #noTransactions>
+        <tr>
+          <td colspan="4" class="text-center text-muted">
+            No transactions found.
+          </td>
+        </tr>
+      </ng-template>
+    </div>
+
+    <!-- Withdraw Button -->
+    <button class="btn btn-primary my-3" (click)="toggleWithdrawForm()">
+      <i class="bi bi-cash-stack"></i> Withdraw Balance
+    </button>
+
+    <!-- Withdrawal Form: shows only if toggled -->
+    <div *ngIf="showWithdrawForm" class="card border-0 shadow-sm mt-3">
+      <div class="card-header bg-warning text-dark">
+        <h5 class="mb-0"><i class="bi bi-cash-stack me-2"></i>Withdraw Funds</h5>
+      </div>
+
+      <div class="card-body">
+        <form (ngSubmit)=" withdrawFunds()" #withdrawForm="ngForm">
+          <div class="mb-3">
+            <label class="form-label">Withdrawal Amount</label>
+            <input type="number" class="form-control"
+                   [(ngModel)]="withdrawAmount"
+                   name="withdrawAmount"
+                   min="1"
+                   [max]="wallet?.balance!"
+                   required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Payment Method</label>
+            <select class="form-select"
+                    [(ngModel)]="paymentMethod"
+                    name="paymentMethod"
+                    required>
+              <option value="" disabled>
+                      Select a method</option>
+              <option value="bank">🏦 Bank Transfer</option>
+              <option value="paypal">🅿️ PayPal</option>
+            </select>
+          </div>
+
+          <div *ngIf="paymentMethod === 'bank'" class="mb-3">
+            <label class="form-label">Bank Account</label>
+            <input type="text" class="form-control"
+                   [(ngModel)]="bankAccount"
+                   name="bankAccount"
+                   required>
+          </div>
+
+          <div *ngIf="paymentMethod === 'paypal'" class="mb-3">
+            <label class="form-label">PayPal Email</label>
+            <input type="email" class="form-control"
+                   [(ngModel)]="paypalEmail"
+                   name="paypalEmail"
+                   required>
+          </div>
+
+          <button type="submit" class="btn btn-warning w-100"
+                  [disabled]="!withdrawForm.valid">
+            <i class="bi bi-send"></i> Confirm Withdrawal
+          </button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>

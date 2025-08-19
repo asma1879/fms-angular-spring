@@ -1,0 +1,40 @@
+/* General Body Reset */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #f8f9fa, #e9ecef);
+  min-height: 100vh;
+  overflow-x: hidden; /* Prevents shifting on narrow content */
+}
+
+/* Use with router content wrapper */
+.router-container {
+  flex-grow: 1;
+  padding: 1rem;
+  min-width: 0;
+}
+
+/* Sidebar width fix */
+.sidebar {
+  width: 220px;
+  flex-shrink: 0;
+}
+
+/* Right panel consistency */
+.profile-panel {
+  width: 250px;
+  flex-shrink: 0;
+}
+
+/* Highlight active router links */
+.nav-link.active,
+.nav-link.router-link-active,
+.nav-link.router-link-exact-active {
+  font-weight: bold;
+  color: #0d6efd !important;
+}
+
+/* Prevent shifting layout */
+main {
+  min-width: 0;
+}

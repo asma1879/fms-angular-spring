@@ -1,0 +1,49 @@
+<h2 class="mb-3">Payments</h2>
+<div class="card p-4 shadow-sm">
+  <form>
+   
+
+ <form (ngSubmit)="submitPayment()">
+  <div class="mb-3">
+    <label for="clientName" class="form-label">Client Name</label>
+    <input type="text" class="form-control" id="clientName" [(ngModel)]="payment.clientName" name="clientName" required>
+  </div>
+  <div class="mb-3">
+    <label for="amount" class="form-label">Amount ($)</label>
+    <input type="number" class="form-control" id="amount" [(ngModel)]="payment.amount" name="amount" required>
+  </div>
+  <div class="mb-3">
+    <label for="paymentDate" class="form-label">Payment Date</label>
+    <input type="date" class="form-control" id="paymentDate" [(ngModel)]="payment.paymentDate" name="paymentDate" required>
+  </div>
+  <button type="submit" class="btn btn-success">Submit Payment</button>
+</form>
+<br>
+<br>
+
+<!-- ✅ Display Submitted Payments -->
+<div *ngIf="payments.length > 0">
+  <h4 class="mb-3">Submitted Payments</h4>
+  <table class="table table-bordered">
+    <thead class="table-light">
+      <tr>
+        <th>#</th>
+        <th>Client Name</th>
+        <th>Amount ($)</th>
+        <th>Payment Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of payments; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ p.clientName }}</td>
+        <td>{{ p.amount }}</td>
+        <td>{{ p.paymentDate }}</td>
+        <td>
+  <button class="btn btn-sm btn-primary me-2" (click)="editPayment(p)">Edit</button>
+  <button class="btn btn-sm btn-danger" (click)="deletePayment(p.id!)">Delete</button>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

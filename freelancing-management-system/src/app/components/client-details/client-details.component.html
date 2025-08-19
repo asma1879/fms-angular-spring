@@ -1,0 +1,7 @@
+<h2>{{ client.name }} ({{ client.company }})</h2>
+<p><strong>Email:</strong> {{ client.email }}</p>
+<h4>Projects:</h4>
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let project of client.projects">{{ project }}</li>
+</ul>
+

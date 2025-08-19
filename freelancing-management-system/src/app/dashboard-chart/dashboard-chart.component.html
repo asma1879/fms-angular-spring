@@ -1,0 +1,33 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4 text-primary">📊 Dashboard Overview</h2>
+
+  <div class="row">
+    <!-- Role Pie Chart -->
+    <div class="col-md-6 mb-12">
+      <canvas baseChart
+              [data]="roleChartData"
+              [type]="'pie'"
+              [options]="roleChartOptions">
+      </canvas>
+    </div>
+
+    <!-- Job Status Doughnut Chart -->
+    <div class="col-md-6 mb-12">
+      <canvas baseChart
+              [data]="jobStatusData"
+              [type]="'doughnut'"
+              [options]="jobStatusOptions">
+      </canvas>
+    </div>
+    <br><br>
+    <!-- Earnings Bar Chart -->
+    <div class="col-md-6 mb-12">
+      <canvas baseChart
+              [data]="earningsChartData"
+              [type]="'bar'"
+              [options]="earningsChartOptions">
+      </canvas>
+    </div>
+  </div>
+</div>
+

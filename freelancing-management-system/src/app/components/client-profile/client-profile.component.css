@@ -1,0 +1,9 @@
+.card {
+  border-radius: 12px;
+}
+.card-header {
+  font-weight: 600;
+}
+.card-footer button {
+  min-width: 80px;
+}

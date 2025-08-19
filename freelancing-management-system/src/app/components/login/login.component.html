@@ -1,0 +1,98 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand fw-bold text-success" routerLink="/">FreelancePortal</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNav" aria-controls="navbarNav"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item"><button class="btn btn-outline-success btn-sm me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button></li>
+        <li class="nav-item"><a class="btn btn-success btn-sm" routerLink="/register">Register</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Carousel Banner -->
+<div id="homeCarousel" class="carousel slide home-carousel mt-5" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="assets/images/slide3.jpg" class="d-block w-100 banner-img" alt="Slide 1" />
+    </div>
+    <div class="carousel-item">
+      <img src="assets/images/slide2.jpg" class="d-block w-100 banner-img" alt="Slide 2" />
+    </div>
+    <div class="carousel-item">
+      <img src="assets/images/slide1.jpg" class="d-block w-100 banner-img" alt="Slide 3" />
+    </div>
+  </div>
+
+  <!-- Welcome Overlay -->
+  <div class="carousel-caption d-flex flex-column align-items-center justify-content-center h-100">
+    <h1 class="display-4 fw-bold text-white text-shadow">Welcome to FreelancePortal</h1>
+    <p class="lead text-white">Connect with skilled freelancers and clients worldwide.</p>
+    <a routerLink="/register" class="btn btn-success btn-lg mt-3">Get Started</a>
+    <button class="btn btn-outline-light btn-lg mt-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+  </div>
+</div>
+
+<!-- Sections -->
+<section id="about" class="py-5 px-4 bg-light">
+  <div class="container">
+    <h3 class="fw-bold">About Us</h3>
+    <p>We connect clients with top freelancers to complete tasks efficiently, securely, and affordably.</p>
+  </div>
+</section>
+
+<section id="blog" class="py-5 px-4 bg-white">
+  <div class="container">
+    <h3 class="fw-bold">Latest from the Blog</h3>
+    <p>Insights, tips, and stories from freelancers and clients for building your career or business.</p>
+  </div>
+</section>
+
+<section id="contact" class="py-5 px-4 bg-light">
+  <div class="container">
+    <h3 class="fw-bold">Contact</h3>
+    <p>Need help? Email us at <a href="mailto:support@freelancepro.com">support@freelancepro.com</a></p>
+  </div>
+</section>
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content shadow">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel">Login to FreelancePro</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #loginForm="ngForm" (ngSubmit)="onLogin()" novalidate>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" id="email" name="email" class="form-control" required [(ngModel)]="loginData.email" #email="ngModel" />
+            <div class="text-danger" *ngIf="email.invalid && email.touched">Email is required.</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" id="password" name="password" class="form-control" required [(ngModel)]="loginData.password" #password="ngModel" />
+            <div class="text-danger" *ngIf="password.invalid && password.touched">Password is required.</div>
+          </div>
+
+          <button class="btn btn-success w-100" [disabled]="loginForm.invalid">Login</button>
+        </form>
+        <div class="text-center mt-3">
+          Don't have an account? <a routerLink="/register">Register</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

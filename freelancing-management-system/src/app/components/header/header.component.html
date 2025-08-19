@@ -1,0 +1,113 @@
+<!-- <header class="navbar navbar-expand-lg navbar-light bg-light border-bottom px-4 shadow-sm"> -->
+  
+  <header class="navbar navbar-expand-lg navbar-light bg-light border-bottom px-4 shadow-sm sticky-top">
+
+   <a class="navbar-brand text-success fw-bold" routerLink="/"> 
+    <i class="bi bi-briefcase-fill me-2"></i> FreelancePortal </a> 
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+       <span class="navbar-toggler-icon"></span> </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNav"> 
+        <ul class="navbar-nav"> <li class="nav-item"><a class="nav-link" routerLink="/home">Home</a>
+          <li class="nav-item" *ngIf="role === 'client'"> <a class="nav-link" routerLink="/dashboard">Dashboard</a>
+            <li class="nav-item" *ngIf="role === 'freelancer'"> <a class="nav-link" routerLink="/dashboard-chart">Dashboard</a>
+            
+          </li> <li class="nav-item" *ngIf="role === 'client'"> <a class="nav-link" routerLink="/posted-jobs">Posted Jobs</a></li>
+             <li class="nav-item" *ngIf="role === 'freelancer'"> <a class="nav-link" routerLink="/jobs">Browse Jobs</a>
+           <!-- </li> <li class="nav-item" *ngIf="role === 'client'"> <a class="nav-link" routerLink="/clients">My Dashboard</a> -->
+            <!-- </li> <li class="nav-item"> <a class="nav-link" routerLink="/freelancers">Freelancers</a></li> -->
+               <!-- <li class="nav-item" *ngIf="role === 'freelancer'"><a class="nav-link" routerLink="/freelancer-profile">
+    Add Freelancer
+  </a></li> -->
+  <!-- <li class="nav-item" >
+   <a class="nav-link" routerLink="/clients-profile" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+              !-- <i class="bi bi-list"></i> --Clients 
+            </a></li> -->
+   <!-- <li class="nav-item mb-2" *ngIf="role === 'client'">
+            <a class="nav-link" routerLink="freelancers" routerLinkActive="fw-bold text-success">
+              !-- <i class="bi bi-people-fill me-2"></i>--Freelancers 
+            </a>
+          </li> -->
+            <li class="nav-item" *ngIf="role === 'client'"> <a class="nav-link" routerLink="/projects">Projects</a>
+              <li class="nav-item" *ngIf="role === 'freelancer'"> <a class="nav-link" routerLink="/freelancer-project">Projects</a> 
+            <!-- <li class="nav-item"> <a class="nav-link" routerLink="/login">Login</a>
+              <li class="nav-item"> <a class="nav-link" routerLink="/register">Registration</a> -->
+          </li> </ul><br><br>
+          <!-- <span class="position-relative"> <i class="bi bi-bell-fill text-success fs-4"></i> 
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"> 3 
+              <span class="visually-hidden">unread messages</span> </span> </span> -->
+  
+  <div class="d-flex align-items-center gap-3">
+
+    
+      <!-- Search Box -->
+      <!-- <div class="input-group me-4">
+        <input type="text" class="form-control" placeholder="Search freelancers, jobs, skills..." [(ngModel)]="searchQuery">
+        <button class="btn btn-outline-success" (click)="onSearch()">
+          <i class="bi bi-search"></i>
+        </button>
+      </div> -->
+    
+    <div class="dropdown">
+      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+        <i class="bi bi-person-circle me-1"></i> Profile
+      </a>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li><a class="btn btn-outline-success w-100" routerLink="/profile">View Profile</a></li>
+         <li *ngIf="role === 'freelancer'"><a class="btn btn-outline-primary w-40" routerLink="/freelancer-profile">
+    View Freelancers Full Profile
+  </a></li>
+   <li *ngIf="role === 'client'"><a class="btn btn-outline-primary w-40" routerLink="/clients">
+    View Clients Full Profile
+  </a></li>
+        <li><a class="btn btn-outline-secondary w-100" routerLink="/settings">Settings</a></li>
+        
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="btn btn-outline-danger w-100" routerLink="/login">Logout</a></li>
+      </ul>
+    </div>
+    
+    <!-- <div class="dropdown me-3">
+       <a class="nav-link position-relative" href="#" role="button" id="notificationDropdown" data-bs-toggle="dropdown" aria-expanded="false"> <i class="bi bi-bell fs-5"></i> <span class="position-absolute top-0 start-65 translate-middle badge rounded-pill bg-danger"> {{ notifications.length }} </span>
+    </a> <ul class="dropdown-menu dropdown-menu-end p-2" aria-labelledby="notificationDropdown" style="width: 300px;"> <li *ngIf="notifications.length === 0" class="text-center text-muted">No new notifications</li> <li *ngFor="let note of notifications" class="dropdown-item text-wrap">
+       <i class="bi bi-info-circle me-2 text-primary"></i> {{ note.message }} </li>
+       </ul> </div> -->
+       <!-- <div class="notification-bell me-3"> <i class="bi bi-bell fs-5 text-primary"></i> <span class="notification-badge">{{ notifications.length }}</span> </div> -->
+       <div class="position-relative me-3">
+        <button
+          class="btn btn-link position-relative"
+          id="messageDropdown"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <i class="bi bi-bell fs-4 text-primary"></i>
+          <span
+            class="position-absolute top-0 start-70 translate-middle badge rounded-pill bg-danger"
+            style="transform: translate(-65%, -45%);font-size: 0.65rem;"
+          >
+            {{ messages.length }}
+          </span>
+        </button>
+      
+        <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="messageDropdown" style="width: 200px;">
+          <li *ngFor="let msg of messages">
+            <div class="dropdown-item d-flex flex-column small">
+              <strong>{{ msg.from }}</strong>
+              <span class="text-muted">{{ msg.content }}</span>
+              <span class="text-end text-muted small">{{ msg.time }}</span>
+            </div>
+            <hr class="my-1" />
+          </li>
+          <li *ngIf="messages.length === 0">
+            <span class="dropdown-item text-muted">No new messages</span>
+          </li>
+          <li>
+            <a class="dropdown-item text-center text-primary" routerLink="/messages">View All</a>
+          </li>
+        </ul>
+      </div>
+      
+    <button class="btn btn-outline-secondary btn-sm" (click)="toggleTheme()">
+      <i class="bi" [ngClass]="theme === 'light-mode' ? 'bi-moon' : 'bi-sun'"></i>
+    </button>
+  </div> 
+  </div> </header>

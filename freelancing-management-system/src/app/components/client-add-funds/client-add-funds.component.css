@@ -1,0 +1,8 @@
+input.form-control::placeholder {
+  font-style: italic;
+  color: #999;
+}
+
+.card-header h5 {
+  font-weight: 600;
+}

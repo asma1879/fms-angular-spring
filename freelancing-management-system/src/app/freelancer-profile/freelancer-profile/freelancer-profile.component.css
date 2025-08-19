@@ -1,0 +1,49 @@
+/* Ensure full-width responsiveness */
+.container {
+  max-width: 960px;
+  margin: auto;
+}
+
+/* Headings */
+h2 {
+  font-weight: 600;
+}
+
+/* Form */
+.form-label {
+  font-weight: 500;
+}
+
+textarea.form-control {
+  resize: vertical;
+}
+
+/* Buttons */
+button[type="submit"] {
+  font-weight: 500;
+}
+
+/* Cards */
+.card {
+  border-radius: 0.75rem;
+}
+
+.card-header {
+  font-size: 1rem;
+}
+
+/* Sub component sections */
+.card-body app-my-jobs,
+.card-body app-job-delivery,
+.card-body app-wishlist,
+.card-body app-notification {
+  display: block;
+  margin-top: 0.5rem;
+}
+
+/* Mobile responsive tweaks */
+@media (max-width: 576px) {
+  .btn {
+    width: 100%;
+  }
+}

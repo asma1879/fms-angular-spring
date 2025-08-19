@@ -1,0 +1,74 @@
+<div class="container mt-4">
+
+  <!-- Submit Job Delivery -->
+  <h4 class="mb-3">Submit Job Delivery</h4>
+  <form (ngSubmit)="submitDelivery()" #form="ngForm" novalidate>
+
+    <!-- Job Selector -->
+    <div class="mb-3">
+      <label for="jobId" class="form-label">Select Job</label>
+      <select [(ngModel)]="newDelivery.jobId" name="jobId" class="form-select" required>
+        <option [ngValue]="0" disabled>Select a Job</option>
+        <option *ngFor="let job of jobs" [ngValue]="job.id">{{ job.title }}</option>
+      </select>
+    </div>
+    
+
+    <!-- Submission Link -->
+    <div class="mb-3">
+      <label for="submissionLink" class="form-label">Submission Link</label>
+      <input type="text" class="form-control" name="submissionLink" [(ngModel)]="newDelivery.submissionLink" required>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary w-100">Submit Delivery</button>
+  </form>
+
+  <!-- My Submissions -->
+  <!-- <h5 class="mt-5">My Submissions</h5>
+  <div *ngFor="let d of deliveries" class="card mt-3">
+    <div class="card-body">
+      <h6 class="card-title">{{ getJobTitle(d.jobId) }}</h6>
+
+      <p><strong>Status:</strong> 
+        <span class="badge bg-info">{{ d.status }}</span>
+      </p>
+
+      <p>
+        <a [href]="d.submissionLink" target="_blank">View Submission</a>
+      </p> -->
+
+      <!-- Leave Review Button (Only when status is Accepted) -->
+      <!-- <button class="btn btn-sm btn-outline-primary"
+              (click)="selectedDelivery = d"
+              *ngIf="d.status === 'approved'">
+        Leave Review
+      </button>
+    </div>
+  </div> -->
+
+  <!-- Review Form (After clicking Leave Review) -->
+  <!-- <div *ngIf="selectedDelivery?.status === 'approved'" class="mt-4">
+    <h5>Leave a Review for "{{ getJobTitle(selectedDelivery?.jobId || 0) }}"</h5>
+    <form (ngSubmit)="submitReview()" #reviewForm="ngForm">
+      
+      !-- Rating --
+      <div class="mb-2">
+        <label for="rating">Rating</label>
+        <select class="form-select" [(ngModel)]="newReview.rating" name="rating" required>
+          <option *ngFor="let r of [1,2,3,4,5]" [ngValue]="r">{{ r }} Star</option>
+        </select>
+      </div> -->
+
+      <!-- Comment -->
+      <!-- <div class="mb-2">
+        <label for="comment">Comment</label>
+        <textarea class="form-control" [(ngModel)]="newReview.comment" name="comment" required></textarea>
+      </div> -->
+
+      <!-- Submit Review Button -->
+      <!-- <button class="btn btn-success w-100" type="submit">Submit Review</button>
+    </form>
+  </div>
+
+</div> -->

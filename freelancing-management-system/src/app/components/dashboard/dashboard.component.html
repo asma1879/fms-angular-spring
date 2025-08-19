@@ -1,0 +1,85 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Welcome, {{ userName }} 👋</h2>
+
+  <div class="row g-4">
+
+    <!-- For Freelancers -->
+    <ng-container *ngIf="userRole === 'freelancer'">
+      <div class="col-md-3">
+        <div class="card text-white bg-primary shadow">
+          <div class="card-body">
+            <h5 class="card-title">Projects</h5>
+            <p class="card-text display-5">{{ stats.totalProjects }}</p>
+            <small>Total projects you're involved in</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card text-white bg-success shadow">
+          <div class="card-body">
+            <h5 class="card-title">Active Contracts</h5>
+            <p class="card-text display-5">{{ stats.activeContracts }}</p>
+            <small>Contracts currently ongoing</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card text-white bg-warning shadow">
+          <div class="card-body">
+            <h5 class="card-title">Pending Payments</h5>
+            <p class="card-text display-5">{{ stats.pendingPayments }}</p>
+            <small>Awaiting clearance</small>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- For Clients -->
+    <ng-container *ngIf="userRole === 'client'">
+      <div class="col-md-3">
+        <div class="card text-white bg-primary shadow">
+          <div class="card-body">
+            <h5 class="card-title">Job Posts</h5>
+            <p class="card-text display-5">{{ stats.totalProjects }}</p>
+            <small>Total jobs you've posted</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="card text-white bg-success shadow">
+          <div class="card-body">
+            <h5 class="card-title">Active Hires</h5>
+            <p class="card-text display-5">{{ stats.activeContracts }}</p>
+            <small>Currently hired freelancers</small>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- Shared Card: Messages -->
+    <div class="col-md-3">
+      <div class="card text-white bg-info shadow">
+        <div class="card-body">
+          <h5 class="card-title">Messages</h5>
+          <p class="card-text display-5">{{ stats.messages }}</p>
+          <small>Unread or new messages</small>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Recent Activity -->
+  <div class="mt-5">
+    <h4>Recent Activity</h4>
+    <ul class="list-group">
+      <li class="list-group-item">📁 You were invited to bid on "Mobile App UI Design"</li>
+      <li class="list-group-item">✅ Contract signed with "GrowthHub"</li>
+      <li class="list-group-item">💰 Payment of $800 pending</li>
+      <li class="list-group-item">📨 New message from recruiter John Doe</li>
+    </ul>
+  </div>
+</div>

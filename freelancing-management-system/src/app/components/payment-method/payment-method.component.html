@@ -1,0 +1,23 @@
+<div class="mb-3">
+  <label for="paymentMethod" class="form-label">Payment Method</label>
+  <select id="paymentMethod" class="form-select" [(ngModel)]="paymentMethod" (change)="onInputChange()">
+    <option value="" disabled selected>Select a payment method</option>
+    <option value="Credit Card">Credit Card</option>
+    <option value="Bank Transfer">Bank Transfer</option>
+    <option value="PayPal">PayPal</option>
+  </select>
+</div>
+
+<div class="mb-3">
+  <label for="accountNumber" class="form-label">Account Number</label>
+  <input
+    type="text"
+    id="accountNumber"
+    class="form-control"
+    [(ngModel)]="accountNumber"
+    (input)="onInputChange()"
+    placeholder="Enter account number"
+  />
+</div>
+
+

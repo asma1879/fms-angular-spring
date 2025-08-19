@@ -1,0 +1,41 @@
+<!-- <div class="card">
+    <div class="card-header">Messages</div>
+    <ul class="list-group list-group-flush">
+      <li *ngFor="let msg of messages" class="list-group-item">
+        <strong>{{ msg.sender }}:</strong> {{ msg.content }}
+      </li>
+    </ul>
+  </div> -->
+
+  <div class="card mb-4">
+  <div class="card-header bg-primary text-white">Send a Message</div>
+  <div class="card-body">
+    <form (ngSubmit)="sendMessage()">
+      <!-- <div class="mb-3">
+        <label>Sender ID</label>
+        <input type="text" class="form-control" [(ngModel)]="newMessage.senderId" name="senderId" required>
+      </div> -->
+      <div class="mb-3">
+        <label>Receiver ID</label>
+        <input type="text" class="form-control" [(ngModel)]="newMessage.receiverId" name="receiverId" required>
+      </div>
+      <div class="mb-3">
+        <label>Message Content</label>
+        <textarea class="form-control" [(ngModel)]="newMessage.content" name="content" rows="3" required></textarea>
+      </div>
+      <button class="btn btn-primary" type="submit">Send Message</button>
+    </form>
+  </div>
+</div>
+
+<!-- Existing messages list -->
+<div class="card">
+  <div class="card-header">Messages</div>
+  <ul class="list-group list-group-flush">
+    <li *ngFor="let msg of messages" class="list-group-item">
+      <strong>{{ msg.senderId }}:</strong> {{ msg.content }}
+    </li>
+  </ul>
+</div>
+
+  

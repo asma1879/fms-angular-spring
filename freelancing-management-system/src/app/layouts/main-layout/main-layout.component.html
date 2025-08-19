@@ -1,0 +1,164 @@
+<app-header [theme]="theme"></app-header>
+
+<div [ngClass]="theme" class="d-flex">
+
+  <!-- Sidebar (Left Accordion Navigation) -->
+  <nav class="sidebar bg-body border-end p-3 position-sticky top-0" style="width: 220px; height: 100vh; overflow-y: auto;">
+    <div class="accordion" id="sidebarAccordion">
+
+      <!-- Jobs Group -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingJobs">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseJobs">
+            <i class="bi bi-briefcase-fill me-2"></i> Jobs
+          </button>
+        </h2>
+        <div id="collapseJobs" class="accordion-collapse collapse" data-bs-parent="#sidebarAccordion">
+          <div class="accordion-body p-0">
+            <ul class="nav flex-column ms-3">
+              <li *ngIf="role === 'freelancer'">
+                <a routerLink="/my-jobs" class="nav-link"><i class="bi bi-list-task me-2"></i>My Jobs</a>
+              </li>
+              <li *ngIf="role === 'client'">
+                <a routerLink="/post-job" class="nav-link"><i class="bi bi-plus-square me-2"></i>Post Job</a>
+              </li>
+              <li *ngIf="role === 'freelancer'">
+                <a routerLink="/bidding" class="nav-link"><i class="bi bi-inbox me-2"></i>Bidding</a>
+              </li>
+              <li *ngIf="role === 'freelancer'">
+                <a routerLink="/job-delivery" class="nav-link"><i class="bi bi-upload me-2"></i>Deliver Work</a>
+              </li>
+              <li *ngIf="role === 'client'">
+                <a routerLink="/job-bids" class="nav-link"><i class="bi bi-eye me-2"></i>View Job Bids</a>
+              </li>
+              <li *ngIf="role === 'client'">
+                <a routerLink="/client-deliveries" class="nav-link"><i class="bi bi-box-arrow-in-down me-2"></i>Job Deliveries</a>
+              </li>
+               <li *ngIf="role === 'freelancer'">
+                <a routerLink="/delivery-report" class="nav-link"><i class="bi bi-box-arrow-in-down me-2"></i>View Submissions</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payments Group -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingPayments">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePayments">
+            <i class="bi bi-credit-card me-2"></i> Payments
+          </button>
+        </h2>
+        <div id="collapsePayments" class="accordion-collapse collapse" data-bs-parent="#sidebarAccordion">
+          <div class="accordion-body p-0">
+            <ul class="nav flex-column ms-3">
+              <li *ngIf="role === 'client'">
+                <a routerLink="/add-funds" class="nav-link"><i class="bi bi-wallet2 me-2"></i>Add Funds</a>
+              </li>
+              <li *ngIf="role === 'client'">
+                <a routerLink="/client/payment-reports" class="nav-link"><i class="bi bi-file-earmark-text me-2"></i>Payment Reports</a>
+              </li>
+              <li><a routerLink="/wallet" class="nav-link"><i class="bi bi-cash-stack me-2"></i>Wallet</a></li>
+              <li><a routerLink="/contracts" class="nav-link"><i class="bi bi-file-earmark-check me-2"></i>Contracts</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Communication -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingComm">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseComm">
+            <i class="bi bi-chat-dots me-2"></i> Communication
+          </button>
+        </h2>
+        <div id="collapseComm" class="accordion-collapse collapse" data-bs-parent="#sidebarAccordion">
+          <div class="accordion-body p-0">
+            <ul class="nav flex-column ms-3">
+              <li><a routerLink="/messaging" class="nav-link"><i class="bi bi-chat-left-text me-2"></i>Messaging</a></li>
+              <li *ngIf="role === 'freelancer'">
+                <a routerLink="/notifications" class="nav-link"><i class="bi bi-bell me-2"></i>Notifications</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Others -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOther">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOther">
+            <i class="bi bi-grid me-2"></i> Others
+          </button>
+        </h2>
+        <div id="collapseOther" class="accordion-collapse collapse" data-bs-parent="#sidebarAccordion">
+          <div class="accordion-body p-0">
+            <ul class="nav flex-column ms-3">
+              <li><a routerLink="/reviews" class="nav-link"><i class="bi bi-star me-2"></i>Reviews</a></li>
+              <li><a routerLink="/calendar" class="nav-link"><i class="bi bi-calendar3 me-2"></i>Calendar</a></li>
+              <li><a routerLink="/resources" class="nav-link"><i class="bi bi-book me-2"></i>Resources</a></li>
+              <li><a routerLink="/settings" class="nav-link"><i class="bi bi-gear me-2"></i>Settings</a></li>
+              <li *ngIf="role === 'freelancer'">
+                <a routerLink="/wishlist" class="nav-link"><i class="bi bi-heart me-2"></i>Wishlist</a>
+              </li>
+              <li *ngIf="role === 'freelancer'">
+                <a routerLink="/freelancers" class="nav-link"><i class="bi bi-people me-2"></i>Freelancers</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+    <button (click)="toggleTheme()" class="btn btn-outline-secondary btn-sm mt-3 w-100">
+      <i class="bi" [ngClass]="theme === 'light-mode' ? 'bi-moon' : 'bi-sun'"></i>
+      Toggle {{ theme === 'light-mode' ? 'Dark' : 'Light' }} Mode
+    </button>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="flex-grow-1 p-4" style="min-width: 0;">
+    <router-outlet></router-outlet>
+  </div>
+
+  <!-- Profile Sidebar -->
+  <aside class="profile-panel border-start p-3 bg-light" style="width: 250px;">
+    <app-profile></app-profile>
+
+    <div class="card mt-4">
+      <div class="card-header bg-light fw-bold">
+        <i class="bi bi-bell-fill me-1"></i> Notifications
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <a routerLink="/notifications">View all notifications</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card mt-4">
+      <div class="card-header bg-light fw-bold">
+        <i class="bi bi-lightbulb-fill me-1"></i> Recommended Skills
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Angular Development</li>
+        <li class="list-group-item">UI/UX Design</li>
+        <li class="list-group-item">API Integration</li>
+      </ul>
+    </div>
+
+    <div class="card mt-4">
+      <div class="card-header bg-light fw-bold">
+        <i class="bi bi-bar-chart-line-fill me-1"></i> Activity Summary
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Jobs Applied: 4</li>
+        <li class="list-group-item">Contracts Active: 2</li>
+        <li class="list-group-item">Payments Received: $1200</li>
+      </ul>
+    </div>
+  </aside>
+</div>
+
+<app-footer></app-footer>

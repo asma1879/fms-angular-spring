@@ -1,0 +1,16 @@
+<div class="container mt-4">
+     <h4 class="mb-4">Bid Notifications</h4>
+      <div *ngIf="notifications.length === 0" class="alert alert-info"> No new notifications. </div> 
+      <div class="row"> <div class="col-md-6 mb-3" *ngFor="let notification of notifications"> 
+        <div class="card shadow-sm border-start border-3 border-primary">
+             <div class="card-body">
+             <h5 class="card-title">Project ID: {{ notification.projectId}}</h5> 
+             <p class="card-text"> 
+                <strong>Status:</strong> 
+            <span [ngClass]="{ 'text-success': notification.status === 'accepted', 'text-danger': notification.status === 'rejected', 'text-warning': notification.status === 'pending' }"> {{ notification.status | titlecase }} </span><br> 
+            <strong>Message:</strong> {{ notification.message }}<br>
+             <strong>Bid Amount:</strong> ${{ notification.amount }}<br> 
+             <strong>Date:</strong> {{ notification.date | date:'medium' }} </p> 
+             <button class="btn btn-outline-secondary btn-sm" (click)="markAsRead(notification.id!)"> Mark as Read </button> 
+            </div>
+ </div> </div> </div> </div>

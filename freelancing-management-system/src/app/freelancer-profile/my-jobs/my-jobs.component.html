@@ -1,0 +1,182 @@
+<!-- my-jobs.component.html -->
+<!-- <div class="mb-3">
+  <h3>My Jobs</h3>
+</div>
+
+<div *ngIf="jobs.length === 0">
+  <p>No jobs found.</p>
+</div>
+
+<div *ngIf="jobs.length > 0" class="row row-cols-1 row-cols-md-2 g-4">
+  <div class="col" *ngFor="let job of jobs">
+    <div class="card h-100 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">{{ job.title }}</h5>
+        <p class="card-text">{{ job.description }}</p>
+        <p><strong>Budget:</strong> ${{ job.budget }}</p>
+        <p><strong>Deadline:</strong> {{ job.deadline }}</p>
+        <p><strong>Skills:</strong> {{ job.skills }}</p>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- <div class="container mt-4">
+  <h4 class="mb-4 text-primary"><i class="bi bi-briefcase-fill me-2"></i>My Jobs</h4>
+
+  <div *ngIf="jobs.length === 0" class="alert alert-warning">
+    No jobs found.
+  </div>
+
+  <div class="row">
+    <div class="col-12 mb-3" *ngFor="let job of jobs">
+      <div class="card shadow-sm border">
+        <div class="card-body">
+          <h5 class="card-title">{{ job.title }}</h5>
+          <p class="card-text">{{ job.description }}</p>
+          <p><strong>Budget:</strong> ${{ job.budget }}</p>
+          <p><strong>Deadline:</strong> {{ job.deadline }}</p>
+          !-- <p><strong>Skills:</strong> {{ job.skills }}</p> --
+          <div class="text-end">
+            <a [routerLink]="['/job-delivery']" [queryParams]="{ jobId: job.id }" class="btn btn-outline-success btn-sm">
+              <i class="bi bi-send-fill me-1"></i> Deliver Work
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- <div class="container mt-4">
+  <h4 class="mb-4 text-primary">
+    <i class="bi bi-briefcase-fill me-2"></i>My Jobs
+  </h4>
+
+  <div *ngIf="jobs.length === 0" class="alert alert-warning text-center">
+    <i class="bi bi-exclamation-circle me-2"></i>No jobs found.
+  </div>
+
+  <div class="row g-4">
+    <div class="col-12" *ngFor="let job of jobs">
+      <div class="card shadow-sm border-start border-4 border-primary">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-start">
+            <div class="w-75">
+              <h5 class="card-title text-dark fw-semibold mb-1">{{ job.title }}</h5>
+              <p class="text-muted small mb-2">{{ job.description }}</p>
+              <br>
+              <div class="mb-2">
+                <span class="badge bg-success me-2">
+                  <i class="bi bi-cash-coin me-1"></i>${{ job.budget }}
+                </span>
+                <br>
+                
+                <span class="badge bg-info text-dark">
+  {{ getDaysLeft(job.deadline) }} days left
+</span>
+                <br>
+                <span class="badge bg-warning text-dark">
+                  <i class="bi bi-clock-fill me-1"></i>Deadline: {{ job.deadline | date:'mediumDate' }}
+                </span>
+                
+
+              </div>
+              !-- Optional: Add skills if available --
+              !-- <p><strong>Skills:</strong> <span class="text-muted">{{ job.skills }}</span></p> --
+            </div>
+
+            <div class="text-end">
+              <a [routerLink]="['/job-delivery']" [queryParams]="{ jobId: job.id }" class="btn btn-outline-success btn-sm">
+                <i class="bi bi-send-fill me-1"></i> Deliver Work
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="container mt-4">
+  <h4 class="mb-4 text-primary">
+    <i class="bi bi-briefcase-fill me-2"></i>My Jobs
+  </h4>
+
+  <div *ngIf="jobs.length === 0" class="alert alert-warning text-center">
+    <i class="bi bi-exclamation-circle me-2"></i>No jobs found.
+  </div>
+
+  <div class="row g-4">
+    <div class="col-12" *ngFor="let job of jobs">
+      <div class="card shadow-sm border-start border-4 border-primary card-hover">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-start">
+            <div class="w-75">
+              <h5 class="card-title fw-semibold mb-1">{{ job.title }}</h5>
+              <p class="text-muted small mb-2">{{ job.description }}</p>
+
+              <div class="mb-2">
+                <span class="badge bg-success me-2">
+                  <i class="bi bi-cash-coin me-1"></i>
+                  <!-- ${{ job.budget }} -->
+                    ${{ job.bidAmount || job.budget }}
+  <small class="text-white ms-1">
+    ({{ job.bidAmount ? 'Your Bid' : 'Budget' }})
+  </small>
+                </span>
+
+                <span class="badge me-2"
+                      [ngClass]="{
+                        'bg-danger': getDaysLeft(job.deadline) < 0,
+                        'bg-warning text-dark': getDaysLeft(job.deadline) >= 0 && getDaysLeft(job.deadline) <= 3,
+                        'bg-info text-dark': getDaysLeft(job.deadline) > 3
+                      }">
+                  <i class="bi bi-clock-fill me-1"></i>
+                  {{ getDaysLeft(job.deadline) >= 0 ? getDaysLeft(job.deadline) + ' days left' : 'Deadline passed' }}
+                </span>
+
+                <span class="badge"
+                      [ngClass]="{
+                        'bg-secondary': job.status === 'in-progress',
+                        'bg-info text-dark': job.status === 'delivered',
+                        'bg-success': job.status === 'completed'
+                      }">
+                  {{ job.status | titlecase }}
+                </span>
+              </div>
+
+              <div *ngIf="job.status === 'completed' && job.rating">
+                <div class="mt-2">
+                  <strong>Client Rating:</strong>
+                  <ng-container *ngFor="let star of getStars(job.rating)">
+                    <i class="bi" [ngClass]="star <= job.rating ? 'bi-star-fill text-warning' : 'bi-star text-muted'"></i>
+                  </ng-container>
+                </div>
+                <div class="mt-1">
+                  <small class="text-muted"><i class="bi bi-chat-left-text me-1"></i>{{ job.feedback }}</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-end">
+              <!-- <a [routerLink]="['/job-delivery']" 
+                 [queryParams]="{ jobId: job.id }" 
+                 class="btn btn-outline-success btn-sm"
+                 [class.disabled]="getDaysLeft(job.deadline) < 0"
+                 [attr.aria-disabled]="getDaysLeft(job.deadline) < 0 ? true : null"
+                 *ngIf="job.status === 'in-progress' || job.status === 'delivered'">
+                <i class="bi bi-send-fill me-1"></i> Deliver Work
+              </a> -->
+              <a [routerLink]="['/job-delivery']" [queryParams]="{ jobId: job.id }" class="btn btn-outline-success btn-sm">
+              <i class="bi bi-send-fill me-1"></i> Deliver Work
+            </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

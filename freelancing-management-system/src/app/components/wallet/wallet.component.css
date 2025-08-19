@@ -1,0 +1,48 @@
+td.text-end {
+  font-weight: bold;
+}
+
+.badge i {
+  margin-right: 4px;
+}
+
+.payment-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+}
+
+.payment-methods {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.payment-methods .method {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.payment-methods .method.selected {
+  border-color: #007bff;
+  background-color: #e9f5ff;
+}

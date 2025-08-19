@@ -1,0 +1,39 @@
+<div class="container mt-4">
+  <h2 class="mb-3 text-primary">Client Management</h2>
+
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let c of clients">
+      <div class="card shadow-sm h-100 border-primary">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+          <h5 class="mb-0">{{ c.name }}</h5>
+          <span class="badge" [ngClass]="c.verified ? 'bg-success' : 'bg-secondary'">
+            {{ c.verified ? 'Verified' : 'Unverified' }}
+          </span>
+        </div>
+        <div class="card-body">
+          <p><strong>Email:</strong> {{ c.email }}</p>
+          <p><strong>Company:</strong> {{ c.company }}</p>
+          <p><strong>Location:</strong> {{ c.location || '-' }}</p>
+          <p><strong>Contact:</strong> {{ c.contact }}</p>
+          <p><strong>Total Projects:</strong> {{ c.totalProjects || 0 }}</p>
+          <p><strong>Total Spent:</strong> ${{ c.totalSpent || 0 }}</p>
+          <p><strong>Rating:</strong>
+            <span class="text-warning" *ngIf="c.rating">
+              <i class="bi bi-star-fill"></i> {{ c.rating }}/5
+            </span>
+            <span *ngIf="!c.rating">-</span>
+          </p>
+          <p><strong>Member Since:</strong> {{ c.memberSince | date }}</p>
+        </div>
+        <div class="card-footer text-end bg-light">
+          <button class="btn btn-sm btn-primary me-2" (click)="editClient(c)">
+            <i class="bi bi-pencil-fill"></i> Edit
+          </button>
+          <button class="btn btn-sm btn-danger" (click)="deleteClient(c.id!)">
+            <i class="bi bi-trash-fill"></i> Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

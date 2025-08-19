@@ -1,0 +1,82 @@
+<div class="container mt-4">
+
+  <!-- 🔷 Section: Submission Reports -->
+  <h3 class="mb-4 text-primary fw-bold">
+    <i class="bi bi-card-checklist me-2"></i>My Submission Reports
+  </h3>
+
+  <!-- 🚫 No Submissions -->
+  <div *ngIf="deliveries.length === 0" class="alert alert-warning text-center">
+    <i class="bi bi-exclamation-circle me-2"></i>No submissions found.
+  </div>
+
+  <!-- ✅ Submissions Table -->
+  <div *ngIf="deliveries.length > 0" class="table-responsive">
+    <table class="table table-bordered table-hover table-striped align-middle shadow-sm">
+      <thead class="table-dark text-center">
+        <tr>
+          <th>#</th>
+          <th>Job Title</th>
+          <!-- <th>Delivery Date</th> -->
+          <th>Status & Review</th>
+          <th>Submission</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let d of deliveries; index as i">
+          <td class="text-center">{{ i + 1 }}</td>
+          <td>{{ getJobTitle(d.jobId) }}</td>
+          <!-- <td>{{ d.deliveryDate | date:'mediumDate' }}</td> -->
+
+          <!-- Status with Review Button -->
+          <td [ngClass]="getStatusClass(d.status)">
+            <span class="fw-semibold">{{ d.status }}</span>
+            <div *ngIf="d.status === 'approved'" class="mt-2">
+              <button class="btn btn-sm btn-outline-success"
+                      (click)="openReviewForm(d)">
+                <i class="bi bi-star me-1"></i>Leave Review
+              </button>
+            </div>
+          </td>
+
+          <!-- View Submission -->
+          <td class="text-center">
+            <a [href]="d.submissionLink" target="_blank" class="btn btn-sm btn-outline-primary">
+              <i class="bi bi-box-arrow-up-right me-1"></i>View
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ✍️ Section: Review Form -->
+  <div *ngIf="selectedDeliveryForReview" class="card mt-5 shadow-sm border-success">
+    <div class="card-header bg-success text-white">
+      <i class="bi bi-pencil-square me-2"></i>Leave a Review for "{{ getJobTitle(selectedDeliveryForReview.jobId) }}"
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="submitReview()" #reviewForm="ngForm">
+        <div class="mb-3">
+          <label class="form-label fw-bold">Rating</label>
+          <select class="form-select" [(ngModel)]="newReview.rating" name="rating" required>
+            <option *ngFor="let r of [1, 2, 3, 4, 5]" [ngValue]="r">{{ r }} ★</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-bold">Comment</label>
+          <textarea class="form-control" rows="3"
+                    [(ngModel)]="newReview.comment"
+                    name="comment" required
+                    placeholder="Write your feedback..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-success w-100">
+          <i class="bi bi-check-circle me-1"></i>Submit Review
+        </button>
+      </form>
+    </div>
+  </div>
+
+</div>

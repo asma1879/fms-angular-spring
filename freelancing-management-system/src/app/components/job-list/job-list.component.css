@@ -1,0 +1,18 @@
+.card {
+  border-radius: 10px;
+  transition: 0.3s ease-in-out;
+}
+
+.card:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08);
+}
+
+.card .badge {
+  font-size: 0.75rem;
+  padding: 0.7em 0.8em;
+  border-radius: 0.4rem;
+}
+.custom-shadow {
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.5); /* Blue shadow */
+}
+
