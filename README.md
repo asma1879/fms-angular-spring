@@ -24,6 +24,7 @@ A freelancing management platform built with Angular for the frontend, Spring Bo
 
 Frontend (Angular):
 
+```
 freelancing-management-system
 ├── .angular                 # Angular CLI cache/config
 ├── node_modules             # Installed npm packages
@@ -39,9 +40,9 @@ freelancing-management-system
 ├── tsconfig.app.json        # TypeScript config for app
 ├── tsconfig.json            # TypeScript base config
 └── tsconfig.spec.json       # TypeScript config for tests
-
+```
 Backend (Spring Boot):
-
+```
 freelance_spring_boot
 ├── .mvn                     # Maven wrapper files
 ├── .settings                # IDE-specific settings (Eclipse)
@@ -59,13 +60,15 @@ freelance_spring_boot
 ├── mvnw                     # Maven wrapper (Unix)
 ├── mvnw.cmd                 # Maven wrapper (Windows)
 └── pom.xml                  # Maven project configuration
-
+```
 ## ⚙️ How to Run
 
 1. Backend (Spring Boot)
 - Open the Spring Boot backend folder (`freelance_spring_boot`) in Eclipse or IntelliJ.
 - Run with Maven:
+```bash
   mvn spring-boot:run
+  ```
 
 2. Frontend (Angular)
 - Open `freelancing-management-system` in Visual Studio Code.

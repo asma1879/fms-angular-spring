@@ -34,9 +34,15 @@ export class BrowseJobsComponent implements OnInit {
       status: this.selectedStatus
     };
 
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    const clientId = user?.id;
+
     this.jobService.bgetJobs(filters).subscribe(data => {
+      // ✅ Only show jobs posted by this logged-in client
+      this.jobs = data.filter((job: Job) => job.clientId === clientId);
+
       // Sort OPEN jobs first
-      this.jobs = data.sort((a, b) => {
+      this.jobs = this.jobs.sort((a, b) => {
         if (a.status === 'OPEN' && b.status !== 'OPEN') return -1;
         if (a.status !== 'OPEN' && b.status === 'OPEN') return 1;
         return 0;

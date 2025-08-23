@@ -1,20 +1,4 @@
-<!-- 
-<div class="container"> <div class="card mb-4"> 
-  <div class="card-header bg-success text-white">Submit a Bid</div> <div class="card-body"> 
-    <form (ngSubmit)="submitBid()"> <div class="mb-3"> <label>Job ID</label> 
-      <input type="text" class="form-control" [(ngModel)]="newBid.projectId" name="projectId" required> </div> 
-      <div class="mb-3"> <label>Freelancer Id</label>
-       <input type="text" class="form-control" [(ngModel)]="newBid.freelancerId" name="freelancerId" required> 
-      </div> <div class="mb-3"> <label>Amount</label> 
-        <input type="number" class="form-control" [(ngModel)]="newBid.amount" name="amount" required> </div>
-         <div class="mb-3"> <label>Message</label>
-           <textarea class="form-control" [(ngModel)]="newBid.message" name="message" rows="3" required>
 
-           </textarea> </div> <button class="btn btn-success" type="submit">Submit Bid</button> </form> 
-          </div> </div> <div class="card"> <div class="card-header bg-light">Submitted Bids</div>
-           <ul class="list-group list-group-flush"> <li *ngFor="let bid of bids" class="list-group-item"> 
-            <strong>{{ bid.freelancer }}</strong> offered <strong>${{ bid.amount }}</strong> for Job #{{ bid.jobId }}<br> 
-  <small class="text-muted">{{ bid.message }}</small> </li> </ul> </div> </div> -->
 
   <div class="container mt-5">
   <h2 class="mb-4">Submit a Bid</h2>
@@ -24,11 +8,6 @@
       <label for="projectId" class="form-label">Job ID</label>
       <input type="number" [(ngModel)]="newBid.projectId" name="projectId" class="form-control" id="projectId" required>
     </div>
-
-    <!-- <div class="col-md-4">
-      <label for="freelancerId" class="form-label">Freelancer ID</label>
-      <input type="number" [(ngModel)]="newBid.freelancerId" name="freelancerId" class="form-control" id="freelancerId" required>
-    </div> -->
 
     <div class="col-md-4">
       <label for="amount" class="form-label">Bid Amount</label>
