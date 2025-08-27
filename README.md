@@ -79,3 +79,15 @@ freelance_spring_boot
 3. Access the application
 - Frontend → http://localhost:4200
 - Backend → http://localhost:8080
+
+### Screenshots
+
+ Landing page with login modal:
+
+ 
+
+<img width="1361" height="690" alt="login" src="https://github.com/user-attachments/assets/585855dd-1045-45cd-b822-11a1f6a8b205" />
+
+Dashboard(Role:Freelancer):
+<img width="1365" height="689" alt="Freelancers_Dashboard" src="https://github.com/user-attachments/assets/ba8e6421-d40b-417e-926b-a69a0da92a4a" />
+
