@@ -1,87 +1,3 @@
-
-
-// const routes: Routes = [
-//   { path: '', component: HomeComponent },
-//   { path: 'login', component: LoginComponent },
-//   { path: 'register', component: RegisterComponent },
-
-//   {
-//     path: 'dashboard',
-//     component: DashboardComponent,
-//     //canActivate: [AuthGuard,RoleGuard],
-//     //data: { roles: ['admin', 'freelancer', 'client'] }
-//   },
-//   {
-//      path: 'clients', 
-//   component: ClientsComponent,
-//   children: [
-//     // other client sub-routes here, if any
-//     { path: 'job-bids', component: ClientJobBidsComponent }
-//   ]
-//   },
-//    {
-//     path: 'freelancers',
-//     component: FreelancerComponent,
-//     //canActivate: [AuthGuard,RoleGuard],
-//     //data: { roles: ['admin'] }
-//   },
-//   {
-//     path: 'projects',
-//     component: ProjectsComponent,
-//   //canActivate: [AuthGuard,RoleGuard],
-//   // data: { roles: ['admin', 'freelancer'] }
-//   },
-//   {
-//     path: 'contracts',
-//     component: ContractsComponent,
-//     //canActivate: [AuthGuard,RoleGuard],
-//     //data: { roles: ['admin', 'client'] }
-//   },
-//   {
-//     path: 'client-details/:id',
-//     component: ClientDetailsComponent,
-//   // canActivate: [AuthGuard,RoleGuard],
-//     //data: { roles: ['admin', 'client'] }
-//   },
-//   {
-//     path: 'freelancer-details/:id',
-//     component: FreelancerDetailsComponent,
-//     //canActivate: [AuthGuard,RoleGuard],
-//    // data: { roles: ['admin', 'freelancer'] }
-//   },
-//   {
-//     path: 'payment',
-//     component: PaymentsComponent,
-//     //canActivate: [AuthGuard,RoleGuard],
-//     //data: { roles: ['admin', 'client'] }
-//   },
-//   { path: 'notifications', component: NotificationsComponent },
-//   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
-//   { path: 'freelancer-profile', component: FreelancerProfileComponent },
-
-
-// { path: 'jobs', component: JobListComponent },
-// { path: 'post-job', component: JobPostComponent },
-// { path: 'reviews', component: ReviewsComponent },
-// { path: 'calendar', component: CalendarComponent },
-// { path: 'resources', component: ResourcesComponent },
-// { path: 'settings', component: SettingsComponent },
-// { path: 'bidding', component: BiddingComponent },
-// { path: 'messaging', component: MessagingComponent },
-// { path: 'browse-jobs', component: BrowseJobsComponent },
-
-
-
-
-//   { path: '**', redirectTo: '' }
-// ];
-
-// @NgModule({
-//   imports: [RouterModule.forRoot(routes)],
-//   exports: [RouterModule]
-// })
-// export class AppRoutingModule {}
-
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -90,7 +6,6 @@ import { RegisterComponent } from './components/register/register.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { BlankLayoutComponent } from './layouts/blank-layout/blank-layout.component';
 
-// All your existing components
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ClientsComponent } from './components/clients/clients.component';
@@ -131,73 +46,6 @@ import { FreelancerProjectsComponent } from './components/freelancer-projects/fr
 import { JobDeliveryReportComponentComponent } from './components/job-delivery-report-component/job-delivery-report-component.component';
 import { DashboardChartComponent } from './dashboard-chart/dashboard-chart.component';
 
-// const routes: Routes = [
-//   {
-//     path: '',
-//     component: MainLayoutComponent,
-//     children: [
-//       { path: '', component: HomeComponent },
-//       { path: 'dashboard', component: DashboardComponent },
-//       { path: 'clients', component: ClientsComponent },
-//       { path: 'clients-profile', component: ClientProfileComponent },
-//       { path: 'job-bids', component: ClientJobBidsComponent },
-//       { path: 'client-deliveries', component: ClientJobDeliveriesComponent },
-//        { path: 'wallet', component: WalletComponent },
-//       { path: 'add-funds', component: ClientAddFundsComponent },
-//      { path: 'earnings', component: FreelancerEarningsComponent },
-//      { path: 'admin/commission', component: AdminCommissionComponent },
-//      // other existing routes like /login, /dashboard etc.
-//     { path: 'my-jobs', component: MyJobsComponent },
-//      { path: 'job-delivery', component: JobDeliveryComponent },
-//     { path: 'freelancers', component: FreelancerComponent }, // New
-//       { path: 'profile', component: NewProfileComponent },
-//     { path: 'earnings', component: FreelancerEarningsComponent },
-//     { path: 'wishlist', component: WishlistComponent },
-//     { path: 'notifications', component: NotificationComponent },
-//       { path: 'freelancers', component: FreelancerComponent },
-//       { path: 'projects', component: ProjectsComponent },
-//       { path: 'contracts', component: ContractsComponent },
-//       { path: 'client-details/:id', component: ClientDetailsComponent },
-//       { path: 'freelancer-details/:id', component: FreelancerDetailsComponent },
-//        { path: 'payment-method', component: PaymentMethodComponent },
-//       { path: 'payment', component: PaymentsComponent },
-//        { path: 'client/payment-reports', component: ClientPaymentReportComponent },
-//       { path: 'profile', component: ProfileComponent },
-//      // { path: 'freelancer-profile', component: FreelancerProfileComponent },
-//      { path: 'freelancer-profile',
-//   component: FreelancerProfileComponent,
-//   children: [
-//     { path: 'my-jobs', component: MyJobsComponent },
-//     { path: 'job-delivery', component: JobDeliveryComponent },
-//     { path: 'freelancers', component: FreelancerComponent }, // New
-//       { path: 'profile', component: NewProfileComponent },
-//     { path: 'earnings', component: FreelancerEarningsComponent },
-//     { path: 'wishlist', component: WishlistComponent },
-//     { path: 'notifications', component: NotificationComponent },
-//     { path: '', redirectTo: 'my-jobs', pathMatch: 'full' }
-//   ]},
-//       { path: 'jobs', component: JobListComponent },
-//       { path: 'post-job', component: JobPostComponent },
-//       { path: 'notifications', component: NotificationsComponent },
-//       { path: 'reviews', component: ReviewsComponent },
-//       { path: 'calendar', component: CalendarComponent },
-//       { path: 'resources', component: ResourcesComponent },
-//       { path: 'settings', component: SettingsComponent },
-//       { path: 'bidding', component: BiddingComponent },
-//       { path: 'messaging', component: MessagingComponent },
-//       { path: 'browse-jobs', component: BrowseJobsComponent },
-//     ]
-//   },
-//   {
-//     path: '',
-//     component: BlankLayoutComponent,
-//     children: [
-//       { path: 'login', component: LoginComponent },
-//       { path: 'register', component: RegisterComponent }
-//     ]
-//   },
-//   { path: '**', redirectTo: '' }
-// ];
 
 const routes: Routes = [
   // Public routes (no sidebar/header)
@@ -209,8 +57,7 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'about', component: AboutComponent },
-     // { path: 'blog', component: BlogComponent },
-      //{ path: 'contact', component: ContactComponent }
+     
     ]
   },
 
