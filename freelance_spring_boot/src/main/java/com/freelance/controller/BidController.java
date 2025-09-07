@@ -1,4 +1,3 @@
-
 package com.freelance.controller;
 
 import com.freelance.dao.BidDAO;
@@ -16,7 +15,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/bids")
-@CrossOrigin(origins = "http://localhost:4200") // Adjust if needed
+@CrossOrigin(origins = "http://localhost:4200") 
 public class BidController {
 
     @Autowired
@@ -53,26 +52,7 @@ public class BidController {
         return bidDAO.getAll();
     }
 
-    // Get bid by ID
-  
-    
-  //  @GetMapping("/{id}")
-  //  public ResponseEntity<Bid> getBidById(@PathVariable("id") Long id) {
-    //    Bid bid = bidDAO.findById(id);
-    //    if (bid != null) {
-    //        return ResponseEntity.ok(bid);
-    //    } else {
-      //      return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-    //    }
-  //  }
-    
-//    @GetMapping("/{id}")
-//    public ResponseEntity<Bid> getBidById(@PathVariable Long id) {
-//        Bid bid = bidDAO.getById(id);
-//        return (bid != null) ? ResponseEntity.ok(bid) : ResponseEntity.notFound().build();
-//    }
-
-
+   
     // Delete a bid
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteBid(@PathVariable Long id) {
@@ -85,27 +65,7 @@ public class BidController {
         }
     }
 
-    // Update bid status (accept/reject)
-//    @GetMapping("/{id}")
-//    public Bid updateBidStatus(@PathVariable Long id) {
-////        String newStatus = statusMap.get("status");
-////        
-////        if (newStatus == null || newStatus.trim().isEmpty()) {
-////            return ResponseEntity.badRequest().body("Status value is required.");
-////        }
-////
-//        Bid bid = bidDAO.getById(id);
-////        if (bid == null) {
-////            return ResponseEntity.notFound().build();
-////        }
-//
-//        bid.setStatus("accepted"); // normalize to lowercase if needed
-//        bidDAO.save(bid); // persist the change
-//
-//       return bid;
-//   }   
-//    
-    
+ 
     @GetMapping("/{id}")
     public ResponseEntity<?> acceptBidAndAssignJob(@PathVariable Long id) {
         Bid bid = bidDAO.getById(id);
@@ -134,16 +94,10 @@ public class BidController {
 
     @GetMapping("reject/{id}")
     public Bid deleteBidStatus(@PathVariable Long id) {
-////        String newStatus = statusMap.get("status");
-////        
-////        if (newStatus == null || newStatus.trim().isEmpty()) {
-////            return ResponseEntity.badRequest().body("Status value is required.");
-////        }
-////
+
+
         Bid bid = bidDAO.getById(id);
-////        if (bid == null) {
-////            return ResponseEntity.notFound().build();
-////        }
+
 
       bid.setStatus("rejected"); // normalize to lowercase if needed
        bidDAO.save(bid); // persist the change
@@ -164,18 +118,6 @@ public class BidController {
         return new ResponseEntity<>(bid, HttpStatus.OK);
     }
 
-
-//    // Get bids by freelancer ID
-//    @GetMapping("/freelancer/{freelancerId}")
-//    public List<Bid> getBidsByFreelancerId(@PathVariable Long freelancerId) {
-//        return bidDAO.findByFreelancerId(freelancerId);
-//    }
-//
-//    // Get bids by freelancer ID where notification not sent
-//    @GetMapping("/freelancer/{freelancerId}/notifications")
-//    public List<Bid> getNotifiedBids(@PathVariable Long freelancerId) {
-//        return bidDAO.findByFreelancerIdAndNotified(freelancerId);
-//    }
 
     @GetMapping("/freelancer/{freelancerId}/notifications")
     public ResponseEntity<List<Bid>> getFreelancerBidNotifications(@PathVariable Long freelancerId) {

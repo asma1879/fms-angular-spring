@@ -38,10 +38,10 @@ export class BrowseJobsComponent implements OnInit {
     const clientId = user?.id;
 
     this.jobService.bgetJobs(filters).subscribe(data => {
-      // ✅ Only show jobs posted by this logged-in client
+      
       this.jobs = data.filter((job: Job) => job.clientId === clientId);
 
-      // Sort OPEN jobs first
+      
       this.jobs = this.jobs.sort((a, b) => {
         if (a.status === 'OPEN' && b.status !== 'OPEN') return -1;
         if (a.status !== 'OPEN' && b.status === 'OPEN') return 1;
