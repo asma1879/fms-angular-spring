@@ -79,3 +79,33 @@ freelance_spring_boot
 3. Access the application
 - Frontend → http://localhost:4200
 - Backend → http://localhost:8080
+
+### Screenshots
+
+ Landing page with login modal:
+
+ 
+
+<img width="1361" height="690" alt="login" src="https://github.com/user-attachments/assets/585855dd-1045-45cd-b822-11a1f6a8b205" />
+
+Dashboard(Role:Freelancer):
+
+
+<img width="1365" height="689" alt="Freelancers_Dashboard" src="https://github.com/user-attachments/assets/ba8e6421-d40b-417e-926b-a69a0da92a4a" />
+
+Browse Jobs(Role:Freelancer):
+
+
+<img width="1365" height="688" alt="Browse_Jobs" src="https://github.com/user-attachments/assets/edc911a3-d39c-4cc2-805b-f8f9ff97d754" />
+
+ 
+Job Bids Section (Role:Client):
+
+
+<img width="1365" height="692" alt="Job_Bids" src="https://github.com/user-attachments/assets/3bc4a038-bd3e-434e-8a68-5a589b69d54b" />
+
+
+Wallet (Role:Admin):
+
+
+<img width="1363" height="690" alt="Wallet" src="https://github.com/user-attachments/assets/e54fa3df-4b7c-43fb-904b-62b51486a86d" />
