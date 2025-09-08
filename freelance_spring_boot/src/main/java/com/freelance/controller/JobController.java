@@ -45,11 +45,7 @@ public class JobController {
 	        return (job != null) ? ResponseEntity.ok(job) : ResponseEntity.notFound().build();
 	    }
 	    
-//	    @GetMapping("/freelancer/{freelancerId}")
-//	    public List<Job> getJobsByFreelancerId(@PathVariable Long freelancerId) {
-//	        return jobDAO.getByFreelancerId(freelancerId);
-//	    }
-	    
+ 
 	    @GetMapping("/jobs/freelancers/{freelancerId}")
 	    public ResponseEntity<List<Job>> getJobsForFreelancer(@PathVariable Long freelancerId) {
 	    return new ResponseEntity<>(jobDAO.getByFreelancerId(freelancerId), HttpStatus.OK);

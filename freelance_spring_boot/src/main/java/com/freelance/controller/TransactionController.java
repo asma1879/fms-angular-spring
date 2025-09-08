@@ -38,7 +38,7 @@ public class TransactionController {
 	        return all.stream()
 	                  .filter(tx -> tx.getDescription() != null &&
 	                                tx.getDescription().toLowerCase().contains("commission"))
-	                  .toList(); // Java 16+ or use `.collect(Collectors.toList())` for Java 8+
+	                  .toList();
 	    }
 
 }

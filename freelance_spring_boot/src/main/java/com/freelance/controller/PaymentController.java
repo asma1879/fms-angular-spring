@@ -122,40 +122,6 @@ public class PaymentController {
 	        return ResponseEntity.ok("Payment initiated, funds moved to admin wallet");
 	    }
 	    
-//	    @PostMapping("/complete")
-//	    @Transactional
-//	    public ResponseEntity<?> completePayment(@RequestBody Map<String, Object> payload) {
-//	        Long jobId = Long.valueOf(payload.get("jobId").toString());
-//	        Long freelancerId = Long.valueOf(payload.get("freelancerId").toString());
-//	        Long clientId = Long.valueOf(payload.get("clientId").toString());
-//
-//	        PaymentReport report = paymentReportDAO.findByJobIdAndClientIdAndFreelancerId(jobId, clientId, freelancerId);
-//	        if (report == null) {
-//	            return ResponseEntity.badRequest().body("Payment report not found");
-//	        }
-//
-//	        if (!"pending".equalsIgnoreCase(report.getStatus())) {
-//	            return ResponseEntity.badRequest().body("Payment already completed");
-//	        }
-//
-//	        double total = report.getAmount();
-//	        double commission = total * 0.1;
-//	        double payout = total - commission;
-//
-//	        boolean transferred = walletDAO.transfer(1L, freelancerId, payout, "Payout for job #" + jobId);
-//
-//	        if (!transferred) {
-//	            return ResponseEntity.badRequest().body("Admin does not have enough balance");
-//	        }
-//
-//	        report.setStatus("completed");
-//	        report.setCommissionAmount(commission);
-//	        paymentReportDAO.save(report);
-//
-//	        return ResponseEntity.ok("Payment completed and transferred to freelancer");
-//	    }
-//	    
-	    
 	    @PostMapping("/complete")
 	    @Transactional
 	    public ResponseEntity<?> completePayment(@RequestBody Map<String, Object> payload) {

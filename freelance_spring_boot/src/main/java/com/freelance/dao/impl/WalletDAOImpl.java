@@ -42,61 +42,7 @@ public class WalletDAOImpl implements WalletDAO{
 	        }
 	    }
 
-//	    @Override
-//	    public void addFunds(Long userId, Double amount) {
-//	        Wallet wallet = getWalletByUserId(userId);
-//	        if (wallet == null) {
-//	            wallet = new Wallet();
-//	            wallet.setUserId(userId);
-//	            wallet.setBalance(0.0);
-//	            saveWallet(wallet);
-//	        }
-//
-//	        wallet.setBalance(wallet.getBalance() + amount);
-//
-//	        // Create transaction
-//	        Transaction txn = new Transaction();
-//	        txn.setWallet(wallet);
-//	        txn.setAmount(amount);
-//	        txn.setType(TransactionType.CREDIT);
-//	        txn.setDescription("Funds added");
-//	        txn.setDate(new Date());
-//
-//	        wallet.getTransactions().add(txn);
-//
-//	        em.merge(wallet);
-//	    }
-	    
-//	    @Override
-//	    public void addFunds(Long userId, Double amount) {
-//	        Wallet wallet = getWalletByUserId(userId);
-//	        if (wallet == null) {
-//	            wallet = new Wallet();
-//	            wallet.setUserId(userId);
-//	            wallet.setBalance(0.0);
-//	            saveWallet(wallet);
-//	        }
-//
-//	        wallet.setBalance(wallet.getBalance() + amount);
-//
-//	        // Create transaction
-//	        Transaction txn = new Transaction();
-//	        txn.setWallet(wallet);
-//	        txn.setAmount(amount);
-//	        txn.setType(TransactionType.CREDIT);
-//	        txn.setDescription("Funds added");
-//	        txn.setDate(new Date());
-//
-//	        //  Fix: initialize transactions list if null
-//	        if (wallet.getTransactions() == null) {
-//	            wallet.setTransactions(new java.util.ArrayList<>());
-//	        }
-//
-//	        wallet.getTransactions().add(txn);
-//
-//	        em.merge(wallet);
-//	    }
-	    
+
 	    @Override
 	    public void addFunds(Long userId, Double amount) {
 	        Wallet wallet = getWalletByUserId(userId);
@@ -128,8 +74,7 @@ public class WalletDAOImpl implements WalletDAO{
 
 	    @Override
 	    public Double getEarningsByFreelancerId(Long freelancerId) {
-	        // Sum of all credited payments linked to freelancer's delivered jobs, minus commission
-	        // Simplified query for demo:
+	        
 	        Double earnings = (Double) em.createQuery(
 	          "SELECT COALESCE(SUM(t.amount), 0) FROM Transaction t WHERE t.type = :credit AND t.description LIKE :desc AND t.wallet.userId = :freelancerId")
 	          .setParameter("credit", TransactionType.CREDIT)

@@ -71,8 +71,8 @@ public class UserController {
         user.setName(userDetails.getName());
         user.setEmail(userDetails.getEmail());
         user.setPassword(userDetails.getPassword());
-        user.setAvatar(userDetails.getAvatar());  // ✅ New field
-        user.setRole(userDetails.getRole());      // ✅ New field
+        user.setAvatar(userDetails.getAvatar());  
+        user.setRole(userDetails.getRole());      
 
         return ResponseEntity.ok(userDAO.save(user));
     }
